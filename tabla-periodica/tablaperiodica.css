@@ -43,9 +43,7 @@ div.info {
     background-color: transparent;
 }
 
-div.fila:first-child div.caja {background-color: transparent; border: none; }
-
-div.fila div.caja:first-child {  background-color: transparent; border: none; }
+div.fila:first-child div.caja, div.fila div.caja:first-child {background-color: transparent; border: none; }
 
 div.fila:nth-child(2) div.caja:nth-child(n+3):nth-last-child(n+2), div.fila:nth-child(3) div.caja:nth-child(n+4):nth-last-child(n+7),
 div.fila:nth-child(4) div.caja:nth-child(n+4):nth-last-child(n+7), div.fila:nth-child(n+9) div.caja:nth-child(n+1):nth-last-child(n+17),
