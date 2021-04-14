@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+}
+
+div.tabla {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    margin: 0.1% 0 0 0.1%;
+}
+
+div.fila { clear: both;  height: 10%;  
+}
+
+div.caja {
+    position: relative;
+    float: left;
+    width: 5%;
+    height: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    margin: 0 0.2% 0.2% 0;
+}
+
+h3 {background-color: transparent; color: navy; }
+h5 {  font-weight: normal;  background-color: transparent;}
+
+div.elemento {
+    position: relative;
+    top:8px;
+    text-align: center;
+    background-color: transparent;
+}
+
+div.info {
+    position: relative;
+    top: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: red;
+    background-color: transparent;
+}
+
+div.fila:first-child div.caja {background-color: transparent; border: none; }
+
+div.fila div.caja:first-child {  background-color: transparent; border: none; }
+
+div.fila:nth-child(2) div.caja:nth-child(n+3):nth-last-child(n+2), div.fila:nth-child(3) div.caja:nth-child(n+4):nth-last-child(n+7),
+div.fila:nth-child(4) div.caja:nth-child(n+4):nth-last-child(n+7), div.fila:nth-child(n+9) div.caja:nth-child(n+1):nth-last-child(n+17),
+div.fila:nth-child(n+9) div.caja:nth-child(n+18):nth-last-child(n)  {
+    background-color:transparent;
+    border: none;
+ }
+
+div.fila:nth-child(n+3):nth-last-child(n+3) div.caja:nth-child(n+2):nth-last-child(n+17), div.fila:nth-child(2) div.caja:nth-child(2) {
+    background-color: royalblue;
+
+}
+
+div.fila:nth-child(n+3):nth-last-child(n+3) div.caja:nth-child(n+14):nth-last-child(n), div.fila:nth-child(2) div.caja:last-child {
+    background-color:goldenrod;
+
+}
+
+div.fila:nth-child(n+5):nth-last-child(n+3) div.caja:nth-child(n+4):nth-last-child(n+7) {
+    background-color: darksalmon;
+}
+
+div.fila:nth-child(n+9) div.caja:nth-child(n+4):nth-last-child(n+3) {
+    background-color: lightgreen;
+}
+
+div.fila:nth-child(n) div.caja:nth-child(4) {
+    margin-left: 0.5%;
+}
+div.fila:nth-child(9) div.caja:nth-child(n) {
+    margin-top: 0.5%;
+}
+
+div.fila:nth-child(n+9) div.caja:nth-child(3) div.info {
+    text-align: right;
+}
+
