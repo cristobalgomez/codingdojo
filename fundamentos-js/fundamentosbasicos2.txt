@@ -1,0 +1,195 @@
+################### 1 ###########
+
+function grande(arr) {
+  for(var i = 0; i < arr.length; i++) if(arr[i] > 0) arr[i] = "big";
+  return arr;
+}
+
+console.log(reemplazarNegativos([-1,3,5,-5]));
+
+
+################# 2 ################
+
+function minMax(arr) {
+    var min = arr[0], max = arr[0];
+
+    for(var i = 0; i < arr.length; i++) {
+        if(arr[i] > max) max = arr[i];
+        if(arr[i] < min) min = arr[i];
+    }
+
+    console.log(min);
+    return max;
+}
+
+console.log(minMax([2,3,5,-1,-100,1000]));
+
+################# 3 #######################
+
+function imprimeDevuelve(arr) {
+    var n = arr.length, impar = 0;
+
+    for(var i = 0; i < n; i++) {
+        if(arr[i]%2 !== 0) {
+            impar = arr[i];
+            break;
+        }
+    }
+    console.log(arr[n - 2]);
+    return impar;
+}
+console.log(imprimeDevuelve([2,2,1,3,4,5]));
+
+
+######################## 4 #####################
+
+function doble(arr) {
+    var nuevoArr = [];
+    for(var i = 0; i < arr.length; i++) nuevoArr[i] = arr[i]*arr[i];
+    return nuevoArr;
+}
+console.log(doble([1,2,3]));
+
+
+######################## 5 ####################
+
+function contarPositivos(arr) {
+    var sum = 0;
+    for(var i = 0; i < arr.length; i++) {
+        if(arr[i] > 0) sum++;
+    }
+    arr[arr.length - 1] = sum;
+    return arr;
+}
+console.log(contarPositivos([-1,1,1,1]));
+console.log(contarPositivos([-1,-5,-6,-7]));
+
+######################## 6 ##########################
+
+function paresImpares(arr) {
+    for(var i = 0; i < arr.length; i += 3) {
+        if(arr[i]%2 === 0 && arr[i+1]%2 === 0 && arr[i+2]%2 === 0 && i + 2 < arr.length) console.log("Es para bien!");
+        else if (arr[i]%2 !== 0 && arr[i+1]%2 !== 0 && arr[i+2]%2 !== 0 && i + 2 < arr.length) console.log("Que imparcial!");
+    }
+}
+paresImpares([1,1,1]);
+paresImpares([2,2,2]);
+paresImpares([1,1,1,2,2,2]);
+paresImpares([1,1,1,2,2]);
+paresImpares([2,2,2,1,1]);
+paresImpares([1,2]);
+
+
+########################## 7 ########################
+
+function incrementarImpares(arr) {
+    for(var i = 0; i < arr.length; i++) {
+        if(i%2 !== 0) arr[i]++;
+        console.log(arr[i]);
+    }
+    return arr;
+}
+console.log(incrementarImpares([1,2,3,4,5,6]));
+
+
+########################### 8 #######################
+
+function longitudesPrevias(arr) {
+    for(var i = arr.length - 1; i > 0; i--) arr[i] = arr[i-1].length;
+    return arr;
+}
+
+console.log(longitudesPrevias(["programar","dojo","genial"]));
+
+#################### 9 #####################
+
+function agregaSiete(arr) {
+    var nuevoArr = [];
+    for(var i = 0; i < arr.length; i++) nuevoArr[i] = arr[i] + 7;
+    return nuevoArr;
+}
+console.log(agregaSiete([1,2,3]));
+
+
+##################### 10 ###################
+
+function invertir(arr) {
+    var i = 0, j = arr.length - 1;
+    while(i < j) {
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        i++;
+        j--;
+    }
+
+    return arr;
+}
+
+console.log(invertir([3,1,6,4,2]));
+console.log(invertir([2,4,6,1]));
+
+
+################## 11 ##########################
+
+function negativa(arr) {
+    var nuevoArr = [];
+    for(var i = 0; i < arr.length; i++ ) {
+        if(arr[i] > 0) nuevoArr.push(-1*arr[i]);
+        else nuevoArr.push(arr[i]);
+    }
+
+    return nuevoArr;
+}
+
+console.log(negativa([1,-3,5,-6]));
+
+
+################# 12 ##############################
+
+function hambre(arr) {
+    var sum = 0;
+    for(var i = 0; i < arr.length; i++) {
+        if(arr[i] == "comida") {
+            console.log("yummy");
+            sum++;
+        }
+    }
+    if(sum === 0) console.log("tengo hambre");
+}
+
+hambre([1,2,3,4,"gato","perro"]);
+hambre(["comida","gato",1,2,"comida","1"]);
+
+
+
+################# 13 #########################
+
+function invertirImpares(arr) {
+    var i = 0, j = arr.length - 1;
+    while(i < j) {
+        if(i%2 === 0) {
+            var temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+
+        i++;
+        j--;
+    }
+
+    return arr;
+}
+
+console.log(invertirImpares([true, 42, "Ada", 2, "pizza"]));
+console.log(invertirImpares([true, 42, 2, "pizza"]));
+
+
+###################### 14 #######################
+
+function escalaArray(arr, num) {
+    for(var i = 0; i < arr.length; i++) arr[i] *= num;
+    return arr;
+}
+
+console.log(escalaArray([1,2,3],3));

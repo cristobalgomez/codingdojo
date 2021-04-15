@@ -1,0 +1,110 @@
+####################### 1 #######################
+
+function sigma(num) {
+    var sum = 0;
+    for(var i = 1; i <= num; i++) sum += i;
+    return sum;
+}
+
+console.log(sigma(3));
+console.log(sigma(5));
+
+
+###################### 2 ###########################
+
+function factorial(num) {
+    var mult = 1;
+    for(var i = 1; i <= num; i++) mult *= i;
+    return mult;
+}
+
+console.log(factorial(3));
+console.log(factorial(5));
+
+##################### 3 ##########################
+                NO RECURSIVO
+function f(n) {
+    var fib = [0,1]
+    for(var i = 2; i <= n; i++) {
+        fib.push(fib[i-2]+fib[i-1]);
+    }
+    return fib[fib.length - 1];
+}
+console.log(f(7));
+console.log(f(6));
+console.log(f(5));
+
+##################### 4 ######################
+function penultimo(arr) {
+    if(arr.length < 2) return null;
+    return arr[arr.length - 2];
+}
+console.log(penultimo([32,true,4,"Liam",7]));
+console.log(penultimo([32,7]));
+console.log(penultimo([32]));
+
+
+####################### 5 ########################
+
+function nUltimo(arr,n) {
+    if(n+1 > arr.length) return null;
+    return arr[arr.length - 1 - n];
+}
+console.log(nUltimo([5,2,3,6,4,9,7],3));
+console.log(nUltimo([5,2,3,6,4,9,7],6));
+console.log(nUltimo([5,2,3,6,4,9,7],7));
+
+##################### 6 ###########################
+
+function segundoMasGrande(arr) {
+    var max = Number.NEGATIVE_INFINITY, sgdoMax = 0;
+    for(var i = 0; i < arr.length; i++) {
+        if(arr[i] > max) {
+            sgdoMax = max;
+            max = arr[i];
+        } else if (arr[i] > sgdoMax) {
+          sgdoMax = arr[i];
+        }
+    }
+    return sgdoMax;
+}
+
+console.log(segundoMasGrande([42,1,4,3.14,7]));
+
+
+#################### 7 ##############################
+
+
+#####DUPLICANDO LOS DE INDICE PARES
+function par(arr) {
+    var nuevoArr = [];
+    for(var i = 0; i < arr.length; i++) {
+        if(i%2 !== 0) nuevoArr.push(arr[i],arr[i]);
+        else nuevoArr.push(arr[i]);
+    }
+    return nuevoArr;
+}
+
+console.log(par([4, "Ulysses", 42, false]));
+
+#####DUPLICANDO PARA OBTENER EL ARRAY EJEMPLO
+
+function par(arr) {
+    var nuevoArr = [];
+    for(var i = 0; i < arr.length; i++) {
+        nuevoArr.push(arr[i],arr[i]);
+    }
+    return nuevoArr;
+}
+
+console.log(par([4, "Ulysses", 42, false]));
+
+
+################# FIBONACCI RECURSIVO #################
+
+function f(n) {
+    if(n < 2) return n;
+    return f(n - 1) + f(n - 2);
+}
+
+console.log(f(7))
