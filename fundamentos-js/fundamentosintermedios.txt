@@ -75,7 +75,7 @@ console.log(segundoMasGrande([42,1,4,3.14,7]));
 #################### 7 ##############################
 
 
-#####DUPLICANDO LOS DE INDICE PARES
+#####DUPLICANDO LOS DE POSICION PAR
 function par(arr) {
     var nuevoArr = [];
     for(var i = 0; i < arr.length; i++) {
