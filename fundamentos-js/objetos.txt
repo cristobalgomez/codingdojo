@@ -1,0 +1,14 @@
+var users = [{name: "Michael", age:37}, {name: "John", age:30}, {name: "David", age:27}];
+
+//edad de john
+console.log(users[1].age);
+//nombre primer objeto (Michael)
+console.log(users[0].name);
+//iteracion sobre el objeto
+for(const elem of users) {
+  console.log(elem.name+" - "+elem.age);
+}
+//nombre mayores de edad
+for(const elem of users) {
+  if(elem.age > 17) console.log(elem.name);
+}
