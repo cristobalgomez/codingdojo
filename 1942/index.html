@@ -1,0 +1,215 @@
+<html>
+<head>
+	<title>1942 Game</title>
+
+<style type="text/css">
+	body{
+		background-color:black;
+	}
+	#container{
+		background: url('fondo1.png');
+		width:1000px;
+		height:550px;
+	}
+	#hero{
+		background: url('1942.gif');
+		background-position: -85px -180px;
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.enemy1{
+		background: url('1942.gif');
+		background-position: -30px -10px;
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.enemy2{
+		background: url('1942.gif');
+		background-position: -60px -10px;
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.colision{
+		background: url('1942.gif');
+		background-position: -60px -40px;
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.bullet{
+		background: url('1942.gif');
+		background-position: -185px -400px;
+		width:18px;
+		height:18px;
+		position:absolute;
+	}
+	#score{
+		position:absolute;
+		border:10px solid red;
+		top:20px;
+		left:800px;
+		background-color:white;
+		padding:10px;
+		font-size:30px;
+		font-family: Arial;	
+	}
+</style>
+</head>
+<body>
+	<div id='container'>
+		<div id='hero'></div>
+		<div id='enemies'></div>
+		<div id='bullets'></div>	
+	</div>
+	<div id='score'></div>
+
+
+	<script>
+		const sonidoExplosion = new sound("explosion.wav");
+		let score = 0;
+		const hero = {
+			x: 200,
+			y: 500,
+			estado: 1
+		};
+
+		const enemies = [
+			{ x: 50, y: 50, tipo: "enemy1", estado: 1 },
+			{ x: 250, y: 50, tipo: "enemy2", estado: 1 },
+			{ x: 450, y: 250, tipo: "enemy1", estado: 1 },
+			{ x: 500, y: 100, tipo: "enemy2", estado: 1 },
+			{ x: 100, y: 250, tipo: "enemy1", estado: 1 },
+			{ x: 300, y: 300, tipo: "enemy2", estado: 1 },
+			{ x: 250, y: 150, tipo: "enemy1", estado: 1 }
+		];
+
+		const bullets = [];
+
+		function displayScore() {
+			document.getElementById("score").innerHTML = score;
+		}
+
+		function displayHero() {
+			let estado = (hero.estado == 1) ? "-85px -180px" : "-60px -40px";
+			document.getElementById("hero").style['left'] = hero.x + "px";
+			document.getElementById("hero").style['top'] = hero.y + "px";
+			document.getElementById("hero").style['background-position'] = estado;
+		}
+
+		function displayEnemies() {
+			let output = ''
+			for(let enemy of enemies) {
+				let estado = (enemy.estado == 1) ? enemy.tipo : "colision";
+				output += '<div class="'+estado+'" style="top:'+enemy.y+'px; left:'+enemy.x+'px;"></div>';
+				//console.log(enemy.y, enemy.x)
+			}
+			document.getElementById("enemies").innerHTML = output;
+		}
+
+		function moveEnemies() {
+			for(let enemy of enemies) {
+				enemy.y += 5;
+
+				if(enemy.y > 550) {
+					enemy.y = 0;
+					enemy.x = Math.floor(Math.random()*500);
+				}
+			}
+		}
+
+		function moveBullets() {
+			for(let bullet of bullets) {
+				bullet.y -= 5;
+
+				if(bullet.y < 0) bullets.shift();
+			}
+		}
+
+		function displayBullets() {
+			let output = '';
+			for(let bullet of bullets) {
+				output += '<div class="bullet" style="top:'+bullet.y+'px; left:'+bullet.x+'px;"></div>';
+			}
+			document.getElementById("bullets").innerHTML = output;
+		}
+
+		function detectCollision() {
+			for(let [i, bullet] of bullets.entries()) {
+				for(let enemy of enemies) {
+					if(Math.abs(bullet.x - enemy.x) < 12 && Math.abs(bullet.y - enemy.y) < 12) {
+						score += 10;
+						sonidoExplosion.play();
+						//console.log(bullet.x - enemy.x, bullet.y - enemy.y);
+						enemy.estado = 0;
+						bullets.splice(i,1);
+						setTimeout( () => {
+							enemy.estado = 1;
+							enemy.y = 0;
+							enemy.x = Math.floor(Math.random()*500); 
+						},500);
+						
+					}
+				}
+			}
+
+			for(let enemy of enemies) {
+				if(Math.abs(hero.x - enemy.x) < 12 && Math.abs(hero.y - enemy.y) < 12) {
+					score -= 500;
+					hero.estado = 0;
+					hero.x = 540;
+					enemy.estado = 0;
+					setTimeout( () => {
+							hero.estado = 1;
+							enemy.estado = 1;
+							enemy.y = 0;
+							enemy.x = Math.floor(Math.random()*500); 
+						},500);
+				}
+			}
+		}
+
+		//sonido: https://www.w3schools.com/graphics/game_sound.asp
+		function sound(src) {
+  			this.sound = document.createElement("audio");
+  			this.sound.src = src;
+  			this.sound.setAttribute("preload", "auto");
+  			this.sound.setAttribute("controls", "none");
+  			this.sound.style.display = "none";
+  			document.body.appendChild(this.sound);
+  			this.play = function(){
+    			this.sound.play();
+  			}
+  			this.stop = function(){
+    			this.sound.pause();
+  			}
+		} 
+
+		function gameLoop() {
+			displayHero();
+			moveEnemies();
+			displayEnemies();
+			moveBullets();
+			displayBullets();
+			detectCollision();
+			displayScore();
+		}
+
+		setInterval(gameLoop, 50);
+		
+		document.onkeydown = (a) => {
+			//console.log(a.keyCode);
+			if(a.keyCode == 37) hero.x -= 10;
+			else if(a.keyCode == 39) hero.x += 10;
+			else if(a.keyCode == 40) hero.y += 10;
+			else if(a.keyCode == 38) hero.y -= 10;
+			else if(a.keyCode == 32) bullets.push({x: hero.x+6, y: hero.y-15});
+
+		}
+
+	</script>
+
+</body>
+</html>
