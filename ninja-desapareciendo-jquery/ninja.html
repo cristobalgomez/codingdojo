@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja desapareciendo</title>
+    <style>
+        button {
+            display: block;
+        }
+        div {
+            width: 530px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>jQuery - Ninja desapareciendo</h1>
+        <img src="warrior-ninja-avatar-samurai-icon.png" alt="ninja" class="ninja">
+        <img src="warrior-ninja-avatar-samurai-icon.png" alt="ninja" class="ninja">
+        <img src="warrior-ninja-avatar-samurai-icon.png" alt="ninja" class="ninja">
+        <img src="warrior-ninja-avatar-samurai-icon.png" alt="ninja" class="ninja">
+        <img src="warrior-ninja-avatar-samurai-icon.png" alt="ninja" class="ninja">
+        <img src="warrior-ninja-avatar-samurai-icon.png" alt="ninja" class="ninja">
+        <img src="warrior-ninja-avatar-samurai-icon.png" alt="ninja" class="ninja">
+        <img src="warrior-ninja-avatar-samurai-icon.png" alt="ninja" class="ninja">
+    </div>
+   <button type="button" id="restaurar">Restaurar</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready( function() {   
+            $(".ninja").click( function() {
+                $(this).fadeOut("slow");
+            })
+
+            $("#restaurar").click( function() {
+                $(".ninja").fadeIn("slow");
+            })
+        })
+    </script>
+</body>
+</html>
