@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <title>jQuery World</title>
+ 
+  </head>
+  <body>
+    <div class="container">
+        <h1 class="text-center">jQuery</h1>
+        <p class="text-center">Presiona sobre los titulos para mostrar/esconder los ejemplos</p>
+        <div class="row mt-4">
+            <div class="col-3 text-center">
+                <h4>Agregar clase</h4>
+                <p>Parrafo de muestra</p>
+                <button type="button" class="btn btn-primary">.addClass</button>
+                <button type="button" class="btn btn-primary">.removeClass</button>
+            </div>
+            <div class="col-3 text-center">
+                <h4>Mostrar/esconder imagen con efecto</h4>
+                <img src="jquery-logo-png.png" class="img-fluid" alt="jquery" id="jq">
+                <button type="button" class="btn btn-primary">.slideToggle</button>
+            </div>
+            <div class="col-3 text-center">
+                    <h4>Agregar nuevo parrafo</h4>
+                    <p>Parrafo</p>
+                    
+                    <button type="button" class="btn btn-primary">.before</button>
+                    <button type="button" class="btn btn-primary">.after</button>
+                
+            </div>
+            <div class="col-3 text-center">
+                <h4>Agregar/eliminar a la lista</h4>
+                <ul>
+                    <li>Cosa 1</li>
+                </ul>
+                <button type="button" class="btn btn-primary">.append</button>
+                <button type="button" class="btn btn-primary">.remove</button>
+            </div>
+            <div class="col-3 text-center">
+                <h4>Agregar URL</h4>
+                <a href="#" id="url">Ir al sitio</a>
+                
+                <input type="text" class="form-control" id="campourl" placeholder="http://google.com">
+                <button type="button" class="btn btn-primary mt-1">.attr</button>
+                <button type="button" class="btn btn-primary mt-1">.removeAttr</button>
+            </div>
+            <div class="col-3 text-center">
+                <h4>HTML</h4>
+                <div id="html"></div>
+                <input type="email" class="form-control" id="campohtml" value="<span class='bg-success'>Hola <b>Hola</b></span>">
+                <button type="button" class="btn btn-primary mt-1">.html</button>
+            </div>
+        </div> 
+    </div>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script>
+
+       
+        
+        $(document).ready( function() {    
+            $(".container").hide(0).delay(500).fadeIn(3000);
+            $("h4").siblings().hide();
+
+            $("h4").hover(
+                function() {
+                    $(this).addClass("bg-warning");
+                    console.log(1);
+                },
+                function() {
+                    $(this).removeClass("bg-warning");
+                })
+            
+            $("h4").not(':eq(1)').click(function() {
+                $(this).siblings().toggle();
+            });
+
+            $("h4").eq(1).click(function() {
+                $(this).siblings().toggle();   
+                let estado = $("h4").eq(1).next().next().css("display");
+                $("h4").eq(1).next().css("display", estado);      
+            });
+
+            $("button").eq(0).click( function() {
+                $('p').eq(1).addClass("bg-info");
+            ;})
+
+            $("button").eq(1).click( function() {
+                $('p').eq(1).removeClass("bg-info");
+            ;})
+
+            $("button").eq(2).click( function() {
+                $("#jq").slideToggle("slow");
+            });
+
+            $("button").eq(3).click( function() {
+                $(this).prev().before("<p>Este parrafo va antes</p>");
+            });
+
+            $("button").eq(4).click( function() {
+                $(this).prev().prev().after("<p>Este parrafo va despues</p>");
+            });
+            
+            let lista = 1;
+            $("button").eq(5).click( function() {
+                lista++;
+                $(this).prev().append("<li>Cosa "+ lista +"</li>");
+            });
+
+            $("button").eq(6).click( function() {
+                if(lista > 0) lista--;
+                $(this).prev().prev().children().last().remove();
+            });
+
+            $("button").eq(7).click( function() {
+                $("#url").attr("href", $("#campourl").val());
+            });
+
+            $("button").eq(8).click( function() {
+               $("#url").removeAttr("href");
+            });
+
+            $("button").eq(9).click( function() {
+               $("#html").html($("#campohtml").val());
+            });
+
+
+
+            
+            
+
+
+            
+        });
+
+        
+        /*
+        .html
+.attr
+.val
+.text
+
+slideup
+*/
+    </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
