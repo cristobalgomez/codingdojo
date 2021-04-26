@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja-Gato</title>
+    <style>
+        img {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/cat0.png" id="0">
+    <img src="img/cat1.png" id="1">
+    <img src="img/cat2.png" id="2">
+    <img src="img/cat3.png" id="3">
+    <img src="img/cat4.png" id="4">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready( function() {
+            $("img").click( function() {
+                if(($(this).attr("src")).includes("cat")) $(this).attr("src", "img/ninja"+$(this).attr("id")+".png");
+                else $(this).attr("src", "img/cat"+$(this).attr("id")+".png");
+            })
+        });
+
+    </script>
+</body>
+</html>
