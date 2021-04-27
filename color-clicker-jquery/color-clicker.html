@@ -23,7 +23,8 @@
              })
              $('.side_box').click(function(event){
                 event.stopPropagation();
-                $(this).siblings().css("background-color", random_color()); 
+                $(this).siblings(".middle_box").css("background-color", random_color()); 
+                $(this).siblings(".side_box").css("background-color", random_color()); 
              })
              $('.middle_box').click(function(event){
                 event.stopPropagation();
