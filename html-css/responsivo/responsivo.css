@@ -1,0 +1,69 @@
+.titulo {
+    background-color: grey;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+.contenido {
+    background-color: rgb(190, 190, 190);
+    padding: 5px;
+}
+
+
+.dimension {
+    background-color: khaki;
+    margin: 5px 0;
+}
+
+.dimension p {
+    padding: 5px;
+    margin: 0;
+}
+
+span {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 480px) {
+    .desktop {
+        display:  none;
+    }
+    .tablet {
+        display:  none;
+    }
+
+    .phone {
+        display: block;
+    }
+
+}
+
+@media screen and (min-width:480px) and (max-width: 1023px) {
+    .desktop {
+        display:  none;
+    }
+    .phone {
+        display:  none;
+    }
+    
+    .tablet {
+        display: block;
+    }
+}
+
+
+@media screen and (min-width: 1024px) {
+    .phone {
+        display:  none;
+    }
+    .tablet {
+        display:  none;
+    }
+    .desktop {
+        display: block;
+    }
+}

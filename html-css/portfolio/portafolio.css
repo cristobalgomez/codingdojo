@@ -1,0 +1,153 @@
+
+/* averiguar: rutas absolutas, rutas alternativas, dom */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+div.principal {
+    width: 900px;
+    margin: 0 auto;    
+}
+
+div.principal div.barra {
+    background-color: rgb(243, 240, 240);
+    padding: 20px;
+
+}
+
+div.principal div.barra div.nombre {
+    width: 300px;
+    display: inline-block;
+}
+
+div.principal div.barra div.subtitulo {
+    width: 455px;
+    display: inline-block;
+    text-align: right;
+    margin: 0 0 0 96px;
+}
+
+div.principal div.contenido  {
+    background: rgb(55,47,51);
+    background: linear-gradient(90deg, rgba(55,47,51,1) 0%, rgba(112,89,94,1) 50%, rgba(55,47,51,1) 100%);
+    padding: 20px;
+}
+
+div.principal div.contenido div.superior img.jayne {
+    border: 5px solid rgb(189, 189, 189);
+    width: 380px;
+    height: 257px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.principal div.contenido div.superior div.acerca {
+    width: 450px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 0 16px;
+}
+
+div.titulo {
+    background: rgb(175,174,179);
+    background: linear-gradient(180deg, rgba(175,174,179,1) 0%, rgba(140,138,151,1) 50%, rgba(164,161,169,1) 100%); 
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+div.texto {
+    background: rgb(254,253,252);
+    background: linear-gradient(90deg, rgba(254,253,252,1) 0%, rgba(244,240,242,1) 50%, rgba(218,204,217,1) 100%);
+    padding: 10px 10px;
+ 
+}
+div.texto p {
+    margin: 0 0 15px 0;
+}
+
+div.texto2 {
+    background: rgb(254,253,252);
+    background: linear-gradient(90deg, rgba(254,253,252,1) 0%, rgba(244,240,242,1) 50%, rgba(218,204,217,1) 100%);
+    padding: 10px 10px;
+    height: 200px;
+ 
+}
+
+div.texto2 p {
+    margin: 0;
+}
+
+div.inferior {
+    margin: 15px 0 0 0 ;
+    display: inline-block;
+}
+
+div.inferior div.caja {
+    width:277px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.inferior div.caja img.site {
+    max-width: 100%;
+    max-height: 100%;
+    display:block;
+}
+
+div.inferior div.caja.media {
+    margin: 0 10px;
+}
+
+div.inferior div.caja ul li {
+    list-style-type: none;
+    display: inline;
+    vertical-align: top;
+}
+
+div.inferior div.caja img.tech {
+    width: 15%;
+    height: 15%;
+}
+
+div.principal div.pie {
+    background-color: rgb(243, 240, 240);
+    padding: 20px;
+    text-align: center;
+    font-size: 15px;
+
+}
+div.principal div.pie p {
+    margin: 0 0 2px 0;
+}
+
+div.principal div.pie li {
+    margin: 5px 0 0 0;
+    display: inline;
+}
+div.principal div.pie ul li img {
+    width: 2%;
+    height: 2%;
+    margin: 2px;
+    vertical-align: text-bottom;
+}
+a.a1 {
+    color: inherit;
+}
+
+div.inferior div.caja div.ejemplo {
+    margin: 10px 0 15px 80px;
+}
+
+a.a2 {
+    background-color: green;
+    color:white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px black;
+    text-decoration: none;
+    font-weight: bold;
+}

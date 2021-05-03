@@ -1,0 +1,54 @@
+@blue: #4478bb;
+@green: #1f9b3e;
+@red: #CF142B;
+@white: #FFF;
+@black: #000;
+@baseFontSize: 15px;
+@baseLineHeight: 22px;
+@textColor: #232323;
+@textHighlight: #00214D;
+@fontFamily: Helvetica, Arial, sans-serif;
+@fontSize: 14px;
+@lineHeight: 21px;
+@introColor: #8B4513;
+@introSize: 20px;
+@introLineHeight: 24px;
+@introFontVariant: small-caps;
+
+
+
+.border-radius(@radius,@color) {
+	-webkit-border-radius:	@radius;
+	-moz-border-radius:	@radius;
+	border-radius:		@radius;
+    border-color:  @color;
+    border-style: solid;
+}
+
+h1{
+    color: @blue;
+ }
+h2{
+    color: lighten(@green,10%);
+}
+p {
+    color: @green;
+    font-size: @baseFontSize;
+    line-height: @baseLineHeight;
+    .border-radius(4px,@blue);
+
+    &.intro {
+        color: darken(@introColor,20%);
+		font-variant: @introFontVariant;
+		font-size: @introSize;
+		line-height: @introLineHeight;
+        .border-radius(6px,@black);
+	} 
+ 
+	&.highlight {
+		color: @textHighlight;
+        font-size: @introSize + 5;
+		font-weight: bold;
+        .border-radius(12px,@red);
+	} 
+}

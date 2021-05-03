@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    /*outline: 1px dotted red;*/
+}
+
+div.principal {
+    width: 900px;
+    margin: 0 auto;
+}
+
+
+div.principal div.banner img.logo {
+    width: 100px;
+    height: 100px;
+    z-index: 5;
+    position: relative;
+   
+}
+
+div.principal div.banner h1 {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 30px;
+}
+
+div.principal div.banner span {
+    color: rgba(38,102,156,255);
+}
+
+div.principal div.www {
+    padding: 10px;
+    z-index: 1;
+    margin-top: -25px;
+    position: relative;
+    background: rgb(43,105,157);
+    background: linear-gradient(0deg, rgba(43,105,157,1) 0%, rgba(77,127,168,1) 50%, rgba(43,105,157,1) 100%); 
+}
+
+div.principal div.www h1 {
+    color: white;
+
+}
+
+div.contenido {
+    background: rgb(227,227,227);
+    background: linear-gradient(180deg, rgba(227,227,227,1) 0%, rgba(255,255,255,1) 30%); 
+    min-height: 600px;
+    padding-top: 10px;
+
+}
+
+div.contenido div.izquierda {
+    padding: 5px;
+    width: 200px;
+    display: inline-block;
+}
+
+
+div.contenido div.izquierda h3 span {
+    color: rgb(194, 0, 0);
+}
+
+div.contenido div.izquierda h4 {
+    margin: 5px 0 20px 0;
+}
+
+div.contenido div.izquierda h4 span {
+    color: rgba(38,102,156,255);
+}
+
+div.contenido div.izquierda a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: 2px 2px grey;
+}
+
+div.contenido div.izquierda a.video {
+    background: rgb(99,152,192);
+    background: linear-gradient(180deg, rgba(99,152,192,1) 0%, rgba(40,104,157,1) 100%); 
+}
+div.contenido div.izquierda a.resources {
+    background: rgb(233,168,87);
+    background: linear-gradient(180deg, rgba(233,168,87,1) 0%, rgba(237,117,5,1) 100%); 
+}
+
+div.contenido div.izquierda hr {
+    margin: 22px 0 20px 0;
+}
+
+
+div.contenido div.izquierda div.anuncio {
+    padding: 20px 10px;
+    margin: 22px 0 20px 0;
+    text-align: center;
+    background-image: url('wwwimages/ad_background.png');
+    color: white;
+}
+
+div.contenido div.izquierda div.anuncio img.ninja {
+    width: 50%;
+    height: 50%;
+}
+
+div.contenido div.izquierda div.anuncio a.more {
+    background: rgb(126,208,222);
+    background: linear-gradient(180deg, rgba(126,208,222,1) 0%, rgba(7,193,221,1) 100%); 
+}
+
+div.contenido div.derecha {
+    width:630px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 40px;
+    padding-right: 10px;
+}
+div.contenido div.derecha p.dns {
+    color: rgba(38,102,156,255);
+    display: inline-block;
+    vertical-align: top;
+}
+div.contenido div.derecha p.telefono {
+    color: rgba(38,102,156,255);
+    display: inline-block;
+    vertical-align: top;
+    
+}
+
+div.contenido div.derecha p.telefono span{
+    display: block;
+    text-align: center;
+}
+
+div.contenido div.derecha p.telefono span.pequeno{
+    font-size: 10px;
+    color: gray;
+}
+div.contenido div.derecha p.telefono span.grande{
+    font-size: 30px;
+    font-weight: bold;
+    color: #41c5db;
+}
+
+div.contenido div.derecha img.phone {
+    width: 8%;
+    height: 8%;
+    vertical-align: middle;
+    margin-left: 115px;
+}
+
+div.contenido div.derecha p.dns img.home {
+    width: 10%;
+    height: 10%;
+    display: inline-block;
+    vertical-align: text-bottom;
+    
+}
+div.contenido div.derecha hr {
+    margin: 15px 0;
+ }
+
+ div.contenido div.derecha h2 {
+    color: rgba(38,102,156,255);
+ }
+
+ div.contenido div.derecha span.celeste {
+    color: #41c5db;
+ }
+
+ div.contenido div.derecha span.negra {
+    font-weight: bold;
+ }
+
+
+ div.contenido div.derecha ul li {
+    margin: 5px 0 5px 15px;
+ }
+
+ div.contenido div.derecha img.clientserver {
+    width: 50%;
+    height: 50%;
+    margin: 15px auto;
+    display: block;
+ }
+
+ div.contenido div.derecha ol li {
+    margin: 5px 0 5px 15px;
+ }
+
+div.contenido div.derecha div.thebig {
+    margin-top: 20px;
+    padding: 20px;
+    border: 5px solid #2c8c9c;
+}
+
+div.contenido div.derecha div.thebig img.html{
+    width: 20%;
+    height: 20%;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+div.contenido div.derecha div.thebig p{
+    display: inline-block;
+    width: 450px;
+}
+
+div.contenido div.derecha div.thebig p span{
+    display: block;
+}
+div.contenido div.derecha div.thebig p span.titulo{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px;
+    color: rgba(38,102,156,255);
+}
+
+div.contenido div.derecha div.thebig p span.cont{
+    text-align: left;
+    margin: 5px;
+    
+}
+
+div.contenido div.derecha div.thebig p span.cont a{
+    color: #41c5db;
+    text-decoration: none;
+}

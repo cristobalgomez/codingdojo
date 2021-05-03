@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+    /*outline: 1px dotted red; */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div.principal {
+    width: 970px;
+    margin: 0 auto;
+}
+
+div.principal div.superior {
+    background-color: rgba(38,81,117,255);
+    padding: 10px;
+}
+
+div.principal div.superior div.barra div.logo {
+    width: 350px;
+    height: 110px;
+    display: inline-block;
+}
+
+div.principal div.superior div.barra div.logo img.py {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+div.principal div.superior div.barra div.textsize {     
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 410px;
+    color: white;
+    font-size: 13px;
+}
+
+div.principal div.superior div.barra div.textsize a {     
+    color: gold;
+}
+
+div.principal div.superior div.barra div.buscador {    
+    background-color: rgb(58, 58, 58) ;
+    display: block;
+    width:225px;
+    padding: 15px 40px;
+    border-radius: 10px;
+    margin-top: -95px;
+    margin-left: 645px;
+    box-shadow: 1px 1px 1px black;
+   
+}
+
+div.principal div.superior div.barra div.buscador input.buscador {    
+    text-align: center;
+    color: rgb(158, 164, 170);
+    padding: 5px;
+    width: 149px;
+   
+}
+div.principal div.superior div.barra div.buscador input.go {    
+    text-align: center;
+    padding: 5px;
+    width: 50px;
+    border-radius: 5px;
+    background-color: rgba(45,97,142,255);
+    color:white;
+    margin-left:5px;
+
+}
+
+div.principal div.superior div.menu {
+    width: 90%;
+    margin: 0 auto;
+}
+
+div.principal div.superior div.menu ul.menu  {
+    text-align: center;
+    background-color: red;
+    border-radius: 5px;
+    padding: 15px 30px 15px 30px;
+    background: rgb(47,103,149);
+    background: linear-gradient(0deg, rgba(47,103,149,1) 0%, rgba(63,125,177,1) 50%, rgba(47,103,149,1) 100%); 
+    box-shadow: 1px 1px 1px black;
+    margin: 40px 0 10px 0;
+}
+
+
+div.principal div.superior div.menu ul.menu li {
+    display: inline;
+    font-size: 23px;
+}
+
+div.principal div.superior div.menu ul.menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+div.principal div.superior div.descripcion {
+    width: 90%;
+    margin: 0 auto;
+}
+
+div.principal div.superior div.descripcion div.izquierda  {
+    width: 290px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
+div.principal div.superior div.descripcion div.izquierda ul  {
+    text-align: center;
+}
+
+div.principal div.superior div.descripcion div.izquierda ul li  {
+    margin: 10px;
+}
+
+div.principal div.superior div.descripcion div.izquierda ul li::marker {
+    content: "»";
+    color: gold;
+    font-size: 14px;
+}
+
+div.principal div.superior div.descripcion div.izquierda ul li a {
+    color: white;
+}
+
+div.principal div.superior div.descripcion div.derecha  {
+    width: 560px;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 15px;
+}
+
+div.principal div.superior div.descripcion div.derecha p {
+    text-align: center;
+    color: white;
+}
+
+div.principal div.superior div.descripcion div.derecha ul.pythonzen {
+    text-align: center;
+    color: gold;
+    margin-top: 15px;
+}
+
+div.principal div.superior div.descripcion div.derecha ul.pythonzen li {
+    list-style-type: none;
+    margin: 10px;
+    font-style: italic;
+    font-size: 20px;
+}
+
+div.principal div.superior div.descripcion div.derecha ul.pythonzen li:last-child {
+    list-style-type: none;
+    margin: 10px;
+    font-style: italic;
+    color: white;
+    font-style: normal;
+    font-size: 18px;
+}
+
+div.principal div.medio  {
+    width: 90%;
+    margin: 0 auto; 
+} 
+
+div.principal div.medio div.caja {
+    width: 410px;
+    border-top: 3px solid rgba(153,190,221,255) ;
+    display: inline-block;
+    margin: 10px 10px 20px 10px;
+    text-align: center;
+    vertical-align: top;
+} 
+
+div.principal div.medio div.caja h2 {
+    margin: 5px;
+}
+
+div.principal div.medio div.caja p {
+    width: 350px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+div.principal div.medio div.caja ul {
+    margin-top: 5px;
+    width: 290px; 
+    list-style-type: square;
+    display: inline-block;
+    text-align: left;
+}
+
+div.principal div.medio div.caja a{
+    text-decoration: none;
+    color: rgba(153,190,221,255);
+}
+
+div.principal div.inferior {
+    background: rgb(38,81,117);
+    background: linear-gradient(180deg, rgba(38,81,117,1) 0%, rgba(54,117,170,1) 100%); 
+}
+
+div.principal div.inferior {
+    padding-top: 40px;
+    min-height: 80px;
+}
+
+
+div.principal div.inferior ul {
+    text-align: center;
+
+}
+
+div.principal div.inferior ul li {
+    display: inline;
+    margin: 20px;
+}
+
+div.principal div.inferior ul a {
+    text-decoration: none;
+    color:rgba(153,190,221,255);
+}
+
+
+div.principal div.inferior p {
+    font-size: 11px;
+    margin-top: 20px;
+    color:rgba(153,190,221,255);
+    text-align: center;
+}

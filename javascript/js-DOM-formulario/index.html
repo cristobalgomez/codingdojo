@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script>
+    //http://youmightnotneedjquery.com/
+    //https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/
+    
+    //https://www.w3resource.com/javascript-exercises/javascript-date-exercise-18.php
+    function calculate_age(dob) { 
+      var diff_ms = Date.now() - dob.getTime();
+      var age_dt = new Date(diff_ms); 
+  
+      return Math.abs(age_dt.getUTCFullYear() - 1970);
+    }
+
+    function formatearRut() {
+      const rut = document.getElementById("rut")
+      rut.value = rut.value.split(".").join("");
+      console.log(rut.value)
+      
+    }
+    
+    function mostrarCiudades() {
+      const region = document.getElementById("region");
+      const ciudad = document.getElementById("ciudad");
+
+      const ciudades = {
+        "RM" : ["Santiago", "Melipilla"],
+        "RAR" : ["Temuco", "Angol"],
+        "RR" : ["Valdivia","Los Lagos"]
+      }
+      
+      //https://gist.github.com/joyrexus/7307312
+      while(ciudad.firstChild) ciudad.removeChild(ciudad.firstChild);
+
+      for(let i = 0; i < ciudades[region.value].length; i++) {
+        let nuevaCiudad = document.createElement("option");
+        nuevaCiudad.value = ciudades[region.value][i];
+        nuevaCiudad.label = ciudades[region.value][i];
+        ciudad.appendChild(nuevaCiudad);
+
+      }
+    }
+
+
+  
+    
+    function enviar() {
+   
+      document.querySelectorAll('.alert').forEach(el => el.remove());
+
+      //https://cesarg.cl/validador-de-rut-chileno-con-javascript/
+      var Fn = {
+      // Valida el rut con su cadena completa "XXXXXXXX-X"
+        validaRut : function (rutCompleto) {
+        if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test( rutCompleto ))
+          return false;
+        var tmp 	= rutCompleto.split('-');
+      var digv	= tmp[1]; 
+      var rut 	= tmp[0];
+      if ( digv == 'K' ) digv = 'k' ;
+        return (Fn.dv(rut) == digv );
+        },
+      dv : function(T){
+        var M=0,S=1;
+        for(;T;T=Math.floor(T/10))
+          S=(S+T%10*(9-M++%6))%11;
+        return S?S-1:'k';
+        }
+      }; 
+
+      let container = document.getElementById("container");
+      const correo = document.getElementById("correo").value;
+      const password = document.getElementById("password").value;
+      const rut = document.getElementById("rut").value;
+      const fecha = document.getElementById("fecha").value;
+      const nombres = document.getElementById("nombres").value;
+      const apellidos = document.getElementById("apellidos").value;
+      const direccion = document.getElementById("direccion").value;
+      const telefono = document.getElementById("telefono").value;
+      const ciudad = document.getElementById("ciudad").value;
+      const region = document.getElementById("region").value;
+      const cc = document.getElementById("cc").checked;
+      const visa = document.getElementById("visa").checked;
+      const mastercard = document.getElementById("mastercard").checked;
+      
+      const nuevaFecha = new Date(fecha);
+      //document.getElementById("modal-header").classList.add("bg-danger");
+      //document.getElementById("boton-modal").classList.remove("btn-success");
+            
+                 
+
+      console.log(correo,password,rut,nombres,apellidos,direccion,telefono,ciudad,region,cc,visa,mastercard,fecha, calculate_age(nuevaFecha));
+      console.log(password.match(/^(?=.*\d{4,})(?=.*[a-zA-Z]{4,}).{6,}$/));
+      if(correo == "" || password == "" || rut == "" || nombres == "" || apellidos == "" || direccion == "" ||
+        telefono == "" || ciudad == "" || region == "" ) {
+          
+        container.innerHTML += '<div class="alert alert-danger alert-dismissible fade show mt-4" role="alert"><ul class="list-group list-group-flush bg-transparent"><li class="list-group-item bg-transparent"><strong>Debe rellenar todos los datos</strong></li></ul><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+        console.log("debe rellenar todos los campos")
+                
+      } else {
+               
+        let error= "";
+        
+        //https://regexr.com/3e48o
+        if(!correo.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) error += '<li class="list-group-item bg-transparent">Email no valido</li>';
+        if(!Fn.validaRut(rut)) error += '<li class="list-group-item bg-transparent">Rut no valido</li>';
+        if(isNaN(nuevaFecha.getTime())) error += '<li class="list-group-item bg-transparent">Fecha de nacimiento no valida</li>';
+        //basado en https://regexr.com/3bfsi
+        if(!password.match(/^(?=.*\d{4,})(?=.*[a-zA-Z]{4,}).{6,}$/)) error += '<li class="list-group-item bg-transparent">Contraseña no valida</li>';
+        if(telefono.length < 5) error += error += '<li class="list-group-item bg-transparent"><strong>Numero de telefono no valido</strong></li>';
+        if(calculate_age(nuevaFecha) < 18) error += '<li class="list-group-item bg-transparent"><strong>No cumples con la mayoria de edad</strong></li>';
+        
+        if(!error) {
+          container.innerHTML += '<div class="alert alert-success alert-dismissible fade show mt-4" role="alert">Registro completado exitosamente!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+        } else {
+          container.innerHTML += '<div class="alert alert-danger alert-dismissible fade show mt-4" role="alert"><ul class="list-group list-group-flush bg-transparent">'+error+'</ul><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+        }
+      }
+    }
+
+  </script>
+</head>
+<body>
+    
+
+
+    <div class="container" id="container">
+       
+        
+        <form class="row g-3 mt-4">
+            <div class="col-md-6">
+              <label for="correo" class="form-label" >Email</label>
+              <input type="email" class="form-control" id="correo" placeholder="hola@chao.com">
+            </div>
+            <div class="col-md-6">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password" aria-describedby="rutHelp">
+              <div id="rutHelp" class="form-text">La contraseña debe tener al menos 4 letras y 4 numeros</div> 
+            </div>
+            <div class="col-md-6">
+                <label for="rut" class="form-label">Rut</label>
+                <input type="text" class="form-control" id="rut" placeholder="12345678-9" aria-describedby="passwordHelp" onchange="formatearRut()">
+                <div id="passwordHelp" class="form-text">Ingrese el rut con guion y sin puntos</div>            
+              </div>
+
+              <div class="col-md-6">
+                <label for="fecha" class="form-label">Fecha de nacimiento (DD/MM/AAAA)</label>
+                <input type="date" class="form-control" id="fecha">        
+              </div>
+            <div class="col-md-6">
+                <label for="nombres" class="form-label">Nombres</label>
+                <input type="text" class="form-control" id="nombres">
+              </div>
+              <div class="col-md-6">
+                <label for="ciudad" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos">
+              </div>
+            
+            <div class="col-md-9">
+              <label for="direccion" class="form-label">Direccion</label>
+              <input type="text" class="form-control" id="direccion" placeholder="Calle Tanto #123">
+            </div>
+            <div class="col-md-3">
+                <label for="telefono" class="form-label">Telefono</label>
+                <input type="text" class="form-control" id="telefono">
+              </div>
+              <div class="col-md-6">
+                <label for="region" class="form-label">Region</label>
+                <select id="region" class="form-select" onchange="mostrarCiudades()">
+                  <option disabled selected>Seleccione la Region</option>
+                  <option value="RM">Region Metropolitana</option>
+                  <option value="RAR">Region de la Araucania</option>
+                  <option value="RR">Region de los Rios</option>
+                </select>
+              </div>
+            <div class="col-md-6">
+              <label for="ciudad" class="form-label">Ciudad</label>
+              <select id="ciudad" class="form-select">
+                <option disabled selected>Seleccione una Ciudad</option>
+                <option >Valdivia</option>
+                </select>
+            </div>
+            
+            <div class="col-12">
+                Seleccione el/los producto/s que desea solicitar
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="cc" id="cc" checked disabled>
+                    <label class="form-check-label" for="cc">
+                      Cuenta Corriente
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="visa" id="visa">
+                    <label class="form-check-label" for="visa">
+                      Tarjeta Visa
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="mastercard" id="mastercard">
+                    <label class="form-check-label" for="mastercard">
+                      Tarjeta MasterCard
+                    </label>
+                  </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" onclick="enviar()">Enviar</button>
+            </div>
+                       
+          </form>         
+               
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
+</html>
