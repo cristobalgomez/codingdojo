@@ -121,7 +121,7 @@
                 w.push(row);
             }
 
-            for(var x=0; x < size; x++){
+            for(let x=0; x < size; x++){
 				if(w[0][x]==1) w[0][x]=0;
 			}
             
@@ -231,7 +231,6 @@
 
         document.onkeydown = (e) => {
 
-    
 
 
             if(e.keyCode == 37) { 
@@ -256,10 +255,6 @@
             drawGhost();
             moveGhosts();
             updateScore();
-
-
-
-
 
             //keep score
             //random world
