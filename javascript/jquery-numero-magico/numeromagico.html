@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numero Magico</title>
+    <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.novacancy.js"></script>
+    <script type="text/javascript" src="jquery.slotmachine.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript">    
+        function numeroRandom(low, high) {
+            return Math.floor(Math.random() * (1 + high - low)) + low;
+        }
+
+        const dificultad = {facil: 5, dificil: 3};
+        let vidas = 0;
+        let numeroGenerado = numeroRandom(0,100);
+        console.log(numeroGenerado);
+
+
+		$(document).ready(function() {
+
+			$('.no').novacancy({
+				'reblinkProbability': 0.1,
+				'blinkMin': 0.2,
+				'blinkMax': 0.6,
+				'loopMin': 8,
+				'loopMax': 10,
+				'color': 'WHITE',
+				'blink': true
+			});
+			$('.vacancy').novacancy({
+				'color': 'RED'
+			});
+
+            $("button").hover(function() {
+                $(this).css({"background-color" : "#f0ad4e",
+                             "color" : "black"});
+
+            },
+            function() {
+                $(this).css({"background-color" : "transparent",
+                             "color" : "white"});
+            });
+
+        
+            $("button").first().click( function() {
+                $(this).slideUp("slow");
+                $(".niveles").slideDown("slow"); 
+                $("#example1").css("display","none");     
+            });
+            
+
+           $(".nivel").click(function () {
+                $(".no, .vacancy").hide();
+                $("#example1").fadeIn().delay(2000).fadeOut(400, function() {
+                    $(".adivinar").fadeIn();
+                });
+                $('#example1 ul').playSpin();
+                $(".nivel").hide();
+                vidas = dificultad[$(this).val()];
+                $("#intentos").show();
+                $("#intentos").text("Vidas: "+vidas);
+            });
+
+            $("#adivinar").click(function() {
+                if($("#numero").val() == numeroGenerado) {
+                    $(".board").children().hide();
+                    $("#youwin").show("scale");
+                } else {
+                    
+                    vidas--;
+                    
+                    if(vidas <= 0) { 
+                        $(".board").children().hide();
+                        $("#gameover").show("scale");
+
+                    } else {
+                        $(".board").effect("shake");
+                        $("#intentos").text("Vidas: "+vidas);
+
+                        if($("#numero").val() > numeroGenerado) $("#pista").show().text("El numero es menor");
+                        else $("#pista").show().text("El numero es mayor");
+
+                    }
+                }
+
+                
+            });   
+            
+            $("#numero").change(function() {
+                    console.log("input changed");
+                
+                    if($(this).val().match(/^(100|[1-9]?[0-9])$/)) $("#adivinar").removeAttr("disabled");  
+                    else $("#adivinar").attr("disabled", true); 
+            });
+
+
+
+
+
+        }); 
+
+		
+</script>
+<style>
+    body {
+        background-color: #111111;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .board {
+        text-align: center;
+        border: 1px solid rgba(255,180,0,0.4);
+        border-radius: 4px;
+        width: 500px;
+        min-height: 300px;
+        margin: 50px auto 0 auto;
+        padding: 5px;
+        background-color: #000;
+    }
+
+    .board p {
+        font-size: 75px;
+        font-family: 'Monoton', cursive;
+        color: #fff;
+        margin: 0;
+        text-transform: uppercase;
+    }
+    button {
+        display: block;
+        margin: 0 auto;
+        padding: 0 70px;
+        color: white;
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+    }
+    .niveles {
+        display: none;
+    }
+
+    .adivinar {
+        display: none;
+        margin-top: 50px;
+    }
+  
+    .slotwrapper {
+        overflow: hidden;
+        display: inline-block;
+        height: 200px;
+        display: none;
+    }
+    .slotwrapper ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        position: relative;
+        float: left;
+        text-align: center;
+    }
+    .slotwrapper ul {
+        width: 200px;
+        height:200px;
+        font-size: 200px;
+        line-height: 200px;
+        text-align: center;
+        
+    }
+
+    #intentos {
+        position: fixed;
+        top: 335px;
+        
+        
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+
+    #pista {
+        display: none;
+        margin-top: 50px;
+        padding: 0px 10px;
+        background-color: #f0ad4e;
+        color: black;
+    }
+  
+</style>
+</head>
+<body>
+    <div class="board">
+        <p class="no">Numero</p>
+        <p class="vacancy">Magico</p>
+        
+            <div class="slotwrapper" id="example1">
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                </ul>
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                </ul>
+                
+            </div>
+
+            <button>Seleccionar dificultad</button>
+            <div class="niveles">
+                <button class="nivel" value="facil">Facil</button>
+                <button class="nivel" value="dificil">Dificil</button>
+            </div>
+            
+            <div class="adivinar">
+                <label for="numero">Ingresa un numero entre el 0 y el 100:</label><br>
+                <input type="text" id="numero" name="numero">
+                <button id="adivinar" disabled>Adivinar</button>
+                <div id="pista"></div>
+            </div>
+
+            <div id="intentos"></div>
+            <img src="gameover.jpg" alt="gameover" id="gameover">
+            <img src="youwin.png" alt="youwin" id="youwin">
+        
+
+        
+        
+
+        
+        
+    </div>
+</body>
+</html>
