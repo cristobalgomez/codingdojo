@@ -1,0 +1,275 @@
+<html>
+    <head>
+        <title>NINJAMAN</title>
+		<style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            .row {
+                line-height: 0;
+            }
+			.wall {
+				background-color: blue;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+			}
+            .sushi {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('sushi.png');
+                background-size: contain;
+            }
+            .onigiri {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('onigiri.png');
+                background-size: contain;
+            }
+            .blank {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+            }
+            #ninjaman {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('ninja.gif');
+                background-size: contain;
+                position: absolute;
+            }
+
+            #ghost0 {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('pinky.gif');
+                background-size: contain;
+                position: absolute;
+            }
+            #ghost1 {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('pumpky.gif');
+                background-size: contain;
+                position: absolute;
+            }
+            #ghost2 {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('bluey.gif');
+                background-size: contain;
+                position: absolute;
+            }
+            #ghost3 {
+                background-color: black;
+                height: 40px;
+                width: 40px;
+                display: inline-block;
+                background-image: url('red.gif');
+                background-size: contain;
+                position: absolute;
+            }
+		
+		</style>
+	</head>
+    <body>
+        <div id="world"></div>
+        <div id="ninjaman"></div>
+        <div id="ghost0"></div>
+        <div id="ghost1"></div>
+        <div id="ghost2"></div>
+        <div id="ghost3"></div>
+        Score:<div id="score"></div>
+        Lives:<div id="lives"></div>
+    </body>
+    <script type="text/javascript">
+
+        random = (min, max) => {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        const worldSize = 10;
+        const worldDict = {
+            0: 'blank',
+            1: 'wall',
+            2: 'sushi',
+            3: 'onigiri'
+        };
+
+
+        createWorld = (size) => {
+            let w = [];
+            for(let y = 0; y < size; y++) {
+                let row = []; 
+                for(let x = 0; x < size; x++) {
+                    row.push(random(0,4));
+                } 
+                w.push(row);
+            }
+
+            for(var x=0; x < size; x++){
+				if(w[0][x]==1) w[0][x]=0;
+			}
+            
+
+            return w;
+        
+        };
+        const world = createWorld(worldSize);
+
+      
+        
+
+        drawWorld = () => {
+            output = "";
+            for(let i = 0; i < world.length; i++) {
+                output += "<div class ='row'>";
+                for(let j = 0; j < world[i].length; j++) {
+                    output += "<div class='"+worldDict[world[i][j]]+"'></div>";
+                }
+                output += "</div>";
+            }
+        
+
+            document.getElementById("world").innerHTML = output;
+        }
+
+        drawWorld();
+        
+        let ninjaman = {
+            x: 1,
+            y: 0
+        };
+
+
+
+
+        drawNinja = () => {
+            document.getElementById("ninjaman").style.top = ninjaman.y*40+"px"; 
+            document.getElementById("ninjaman").style.left = ninjaman.x*40+"px"; 
+        }
+
+        drawNinja();
+
+        let score = 0;
+        const scoreDict = {
+            0: 0,
+            1: 0,
+            2: 10,
+            3: 5
+        };
+
+        let ghosts = [{
+            x: random(0,worldSize),
+            y: random(0,worldSize)
+        },
+        {
+            x: random(0,worldSize),
+            y: random(0,worldSize)
+        },
+        {
+            x: random(0,worldSize),
+            y: random(0,worldSize)
+        },
+        {
+            x: random(0,worldSize),
+            y: random(0,worldSize)
+        }  ];
+
+        drawGhost = () => {
+            for(let i = 0; i < ghosts.length; i++) {
+                document.getElementById("ghost"+i).style.top = ghosts[i].y*40+"px"; 
+                document.getElementById("ghost"+i).style.left = ghosts[i].x*40+"px"; 
+            } 
+        };
+
+        drawGhost();
+
+        updateScore = () => {
+            document.getElementById("score").innerHTML = score;
+        }
+
+        checkPosGhost = (ghostNum) => {
+                if(ninjaman.x == ghosts[ghostNum]["x"] && ninjaman.y == ghosts[ghostNum]["y"]) reduceLives();
+        }
+
+        reduceLives = () => {
+            lives--;
+            if(lives > 0) document.getElementById("lives").innerHTML = lives;
+            else document.getElementById("lives").innerHTML = "GAMEOVER";
+        }
+        let lives = 3;
+
+        printLives = () => {
+            document.getElementById("lives").innerHTML = lives;
+        }
+        printLives();
+
+        moveGhosts = () => {
+            for(let i = 0; i < ghosts.length; i++) {
+                if(ghosts[i].x > ninjaman.x && world[ghosts[i].y][ghosts[i].x-1] != 1) ghosts[i].x--;
+                else if(ghosts[i].x < ninjaman.x && world[ghosts[i].y][ghosts[i].x+1] != 1) ghosts[i].x++;
+                else if(ghosts[i].y > ninjaman.y && world[ghosts[i].y-1][ghosts[i].x] != 1) ghosts[i].y--;
+                else if(ghosts[i].y < ninjaman.y && world[ghosts[i].y+1][ghosts[i].x] != 1) ghosts[i].y++;
+                checkPosGhost(i);
+            }
+        }
+
+        document.onkeydown = (e) => {
+
+    
+
+
+            if(e.keyCode == 37) { 
+                if(world[ninjaman.y][ninjaman.x-1] != 1 && ninjaman.x-1 >= 0) ninjaman.x--; //left
+            } else if(e.keyCode == 39) {
+                if(world[ninjaman.y][ninjaman.x+1] != 1 && ninjaman.x+1 < worldSize) ninjaman.x++; //right
+            } else if(e.keyCode == 38) {
+                if(world[ninjaman.y-1][ninjaman.x] != 1 && ninjaman.y-1 >= 0) ninjaman.y--; //up
+            } else if(e.keyCode == 40) {
+                if(world[ninjaman.y+1][ninjaman.x] != 1 && ninjaman.y+1 < worldSize)  ninjaman.y++; //down
+            }
+
+
+            
+
+            score += scoreDict[world[ninjaman.y][ninjaman.x]];
+
+            world[ninjaman.y][ninjaman.x] = 0;
+
+            drawWorld();
+            drawNinja();
+            drawGhost();
+            moveGhosts();
+            updateScore();
+
+
+
+
+
+            //keep score
+            //random world
+            //ghost that chases ninjaman
+        }
+
+
+        /*let createArray = (num, dimensions) {
+            
+        }*/
+
+    </script>
+</html>
