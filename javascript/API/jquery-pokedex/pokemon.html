@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <title>Gotta Catch'em All</title>
+    <style>
+        .ui-widget.ui-widget-content {
+            border: 5px solid red;
+            
+        }
+
+        .ui-dialog .ui-dialog-content {
+            text-align: center;
+        }
+
+        ul {
+            text-align: left;
+            margin: 2px 0;
+        }
+        li { font-size: 14px;}
+        
+        .ui-widget-header {
+            background: red;
+            border-color: red;
+            color: white;
+        }
+
+        h3 {
+            margin: 0;
+        }
+        h5 {
+            text-align: left;
+            margin: 0;
+        }
+        p {
+            margin: 2px;
+            font-size: 14px;
+            text-align: left;
+        }
+    </style>
+    
+    <script>
+        function primeraLetraMayuscula(str) {
+            return str.charAt(0).toUpperCase()+str.slice(1);
+        }
+
+
+        $(document).ready(function() {
+            
+            //vanilla
+            for(let i = 1; i <= 151; i++) {
+                let img = document.createElement("img");
+                img.setAttribute("src","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/"+i+".png");
+                img.setAttribute("id", i);
+                document.body.appendChild(img);
+            }
+
+            //jquery
+            $("#pokedex").dialog({autoOpen: false});
+
+            $("img").click(function() {
+                $.get("https://pokeapi.co/api/v2/pokemon/"+$(this).attr("id")+"/", infoPokedex, "json");
+                $("#pokedex").dialog("open");
+            })
+
+            function infoPokedex(res) {
+                console.log(res.name);
+                let contenido = "<h3>"+primeraLetraMayuscula(res.name)+"</h3>";
+                contenido += '<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/'+res.id+'.png">';
+                contenido += "<h5>Type/s</h5><ul>"
+                for(let t of res.types) {
+                    contenido+= "<li>"+primeraLetraMayuscula(t.type.name)+"</li>";
+                }
+                contenido+="</ul><h5>Height</h5><p>"+res.height+" dm</p>";
+                contenido+="<h5>Weight</h5><p>"+res.weight+" hg</p>";
+                //hg
+
+
+                $("#pokedex").html(contenido);
+            }
+        });
+        
+    </script>
+    
+</head>
+<body>
+    <div id="pokedex" title="Pokedex">
+    </div>
+    
+</body>
+</html>
