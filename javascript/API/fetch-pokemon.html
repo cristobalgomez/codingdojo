@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        
+        //promesas
+        
+        /*
+
+        fetch("https://pokeapi.co/api/v2/pokemon/1/").then((res) => {
+            console.log("resolved",res);
+            const data = res.json();
+            return data;
+        }).then(data => {
+            console.log(data);
+        }).catch((err) => {
+            console.log("rejected", err);
+        });
+
+        */
+        
+        //asyc-await
+        const getPokemon = async () => {
+            const res = await fetch("https://pokeapi.co/api/v2/pokemon/1/"); //esperar que la promesa sea resuelta. si esta resuelta, entonces se asigna
+
+            if(res.status !== 200 ) throw new Error("no se puede obtener la info");
+
+            const data = await res.json();
+            return data;
+        };
+
+        console.log(1);
+        
+
+
+        const test = getPokemon()
+                        .then( data => console.log("resuelto", data.name, data.types.map(t => t.type.name)) )
+                        .catch(err => console.log("rechazado", err.message));
+
+        
+
+        console.log(2);
+        console.log(test); //promesa pendiente
+        
+        
+
+        
+
+    </script>
+</head>
+<body>
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png">
+    
+</body>
+</html>
