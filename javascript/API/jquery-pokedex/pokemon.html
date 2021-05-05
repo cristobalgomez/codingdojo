@@ -43,7 +43,11 @@
             text-align: left;
         }
 
-        
+        #container {
+            margin: 0 auto;
+            width: 500px;
+        }
+     
     </style>
     
     <script>
@@ -51,7 +55,66 @@
             return str.charAt(0).toUpperCase()+str.slice(1);
         }
 
+        //simple "memoria" para reducir # consultas
+        const cache = [];
 
+        function almacenarEnCache(obj) {
+            if(typeof Object) {
+                if(cache.length > 20) cache.shift();
+                cache.push(obj);
+            } else {
+                    return "Solo se pueden almacenar objetos";
+            }
+        }
+
+        function estaEnCache(idPokemon) {
+            if(typeof Number) {
+                for(let [i,poke] of cache.entries()) {
+                    if(poke.id == idPokemon) return [i, true];
+                }
+                return [null, false] 
+            }
+        }
+        
+        function mostrarInfo(obj,nuevoPokemon = false) {
+            if(typeof Object) {
+                let contenido = "<h3>"+primeraLetraMayuscula(obj.name)+"</h3>";
+                contenido += '<img class="pokeimg" id="'+obj.id+'" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+obj.id+'.png">';
+                contenido += "<h5>Type/s</h5><ul>"
+                for(let t of obj.types) {
+                    contenido+= "<li>"+(nuevoPokemon ? primeraLetraMayuscula(t.type.name) : primeraLetraMayuscula(t))+"</li>";
+                    if(nuevoPokemon) nuevoPokemon.types.push(t.type.name);
+                }
+                contenido+="</ul><h5>Height</h5><p>"+obj.height+" dm</p>";
+                contenido+="<h5>Weight</h5><p>"+obj.weight+" hg</p>";
+
+                $("#pokedex").html(contenido);
+
+                $(".pokeimg").hover(function() {
+                    $(this).attr("src","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/"+$(this).attr("id")+".png");
+                }, function() {
+                    
+                    $(this).attr("src","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+$(this).attr("id")+".png");
+                });
+            }
+        }
+        
+        function solicitarPokeApi(res) {
+            
+            const infoPokemon = {
+                id: res.id,
+                name: primeraLetraMayuscula(res.name),
+                height: res.height,
+                weight: res.weight,
+                types: []
+            }
+
+            mostrarInfo(res, infoPokemon);
+            almacenarEnCache(infoPokemon);
+           
+        }
+         
+         
         $(document).ready(function() {
             
             //vanilla
@@ -59,38 +122,37 @@
                 let img = document.createElement("img");
                 img.setAttribute("src","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+i+".png");
                 img.setAttribute("id", i);
-                document.body.appendChild(img);
+                document.querySelector("#container").appendChild(img);
             }
+            //
+           
+            $("#pokedex").dialog({autoOpen: false, 
+                show: {effect: "fade"}, 
+                hide: {effect: "fade"},
+                resizable: false,
+                position: {my: "right-100% top", at: "top+5%"}
 
-            //jquery
-            $("#pokedex").dialog({autoOpen: false});
+            });
 
             $("img").click(function() {
-                $.get("https://pokeapi.co/api/v2/pokemon/"+$(this).attr("id")+"/", infoPokedex, "json");
+                let existe = estaEnCache($(this).attr("id"));
+                console.log(existe)
+                if(existe[1]) {
+                    mostrarInfo(cache[existe[0]]);
+                } else {
+                    $.get("https://pokeapi.co/api/v2/pokemon/"+$(this).attr("id")+"/", solicitarPokeApi, "json");
+                }
+                
                 $("#pokedex").dialog("open");
             })
-
-            function infoPokedex(res) {
-                console.log(res.name);
-                let contenido = "<h3>"+primeraLetraMayuscula(res.name)+"</h3>";
-                contenido += '<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+res.id+'.png">';
-                contenido += "<h5>Type/s</h5><ul>"
-                for(let t of res.types) {
-                    contenido+= "<li>"+primeraLetraMayuscula(t.type.name)+"</li>";
-                }
-                contenido+="</ul><h5>Height</h5><p>"+res.height+" dm</p>";
-                contenido+="<h5>Weight</h5><p>"+res.weight+" hg</p>";
-                //hg
-
-
-                $("#pokedex").html(contenido);
-            }
+                    
         });
         
     </script>
     
 </head>
 <body>
+    <div id="container"></div>
     <div id="pokedex" title="Pokedex">
     </div>
     
