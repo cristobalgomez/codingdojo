@@ -9,6 +9,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <title>Gotta Catch'em All</title>
     <style>
+        body {
+            background-image: url("fondo.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
         .ui-widget.ui-widget-content {
             border: 5px solid red;
             
@@ -46,6 +53,18 @@
         #container {
             margin: 0 auto;
             width: 500px;
+            background-color: rgb(247, 247, 247);
+            border-radius: 50px 20px;
+            border: 2px solid red;
+            padding: 20px;
+        }
+
+        #truco {
+            height: 200px;
+        }
+
+        .pokeimg {
+            margin: 5px;
         }
      
     </style>
@@ -113,26 +132,43 @@
             almacenarEnCache(infoPokemon);
            
         }
-         
-         
-        $(document).ready(function() {
-            
-            //vanilla
-            for(let i = 1; i <= 151; i++) {
-                let img = document.createElement("img");
-                img.setAttribute("src","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+i+".png");
-                img.setAttribute("id", i);
-                document.querySelector("#container").appendChild(img);
-            }
-            //
-           
-            $("#pokedex").dialog({autoOpen: false, 
-                show: {effect: "fade"}, 
-                hide: {effect: "fade"},
-                resizable: false,
-                position: {my: "right-100% top", at: "top+5%"}
 
-            });
+        let desdeCarga = 1;
+        let hastaCarga = 40;
+
+
+        //
+        function asignarTipo() {
+            
+            for(let i = desdeCarga; i <= hastaCarga; i++) {
+                $.get("https://pokeapi.co/api/v2/pokemon/"+i+"/", function(res) {
+                    console.log(res.types[0].type.name); 
+                    let tipo = res.types[0].type.name;
+                    let img = document.getElementById(i);
+                    img.classList.add(tipo);
+                }, "json");
+            }
+            
+            //retorno = tipo.then(res => {retorno = res.types[0].type.name;});
+            //return retorno;
+            //console.log(tipo); //<empty string>
+            //return tipo;// ""
+        }
+
+        
+     
+        function cargarPokemones(primeraLLamada = true) {
+            desdeCarga = primeraLLamada ? desdeCarga : desdeCarga+40;
+            hastaCarga = primeraLLamada ? hastaCarga : hastaCarga+40;
+                for(let i = desdeCarga; i <= hastaCarga; i++) {
+                    let img = document.createElement("img");
+                    
+                    img.setAttribute("src","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+i+".png");
+                    img.setAttribute("id", i);
+                    
+                    document.querySelector("#container").appendChild(img);
+                }
+            
 
             $("img").click(function() {
                 let existe = estaEnCache($(this).attr("id"));
@@ -142,9 +178,36 @@
                 } else {
                     $.get("https://pokeapi.co/api/v2/pokemon/"+$(this).attr("id")+"/", solicitarPokeApi, "json");
                 }
-                
-                $("#pokedex").dialog("open");
-            })
+            
+            $("#pokedex").dialog("open");
+            });
+
+            asignarTipo();
+        }
+         
+         
+        $(document).ready(function() {
+            
+        
+            cargarPokemones(true);
+            
+            $(window).scroll(function() {
+                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                    cargarPokemones(false);
+                    $("#pokedex").dialog("close");
+            }
+            });
+            
+           
+            $("#pokedex").dialog({autoOpen: false, 
+                show: {effect: "fade"}, 
+                hide: {effect: "fade"},
+                resizable: false,
+                position: {my: "right-100% top", at: "top+5%"}
+
+            });
+
+            
                     
         });
         
@@ -155,6 +218,7 @@
     <div id="container"></div>
     <div id="pokedex" title="Pokedex">
     </div>
+    <div id="truco"></div>
     
 </body>
 </html>
