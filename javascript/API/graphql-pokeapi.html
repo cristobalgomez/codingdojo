@@ -53,14 +53,14 @@ const optionsPokemon = type => { return { method: "post",
 
 
 const loadPokemon = type =>  {
-    const getTypes = async () => {
+    const getPokemon = async () => {
     const res = await fetch("https://beta.pokeapi.co/graphql/v1beta", optionsPokemon(type)); 
 
     if(res.status !== 200 ) throw new Error("no se puede obtener la info");
          const data = await res.json();
           return data;
     };
-    const handleTypes = getTypes()
+    const handlePokemon = getPokemon()
                         .then( data => console.log("resuelto / carga pokemon", renderPokemon(data.data.pokemon_v2_pokemon)))
                         .catch(err => console.log("rechazado", err.message));
 };
