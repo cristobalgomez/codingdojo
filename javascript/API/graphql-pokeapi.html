@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>graphql pokeapi</title>
+    <script>
+
+//https://medium.com/walmartglobaltech/writing-a-graphql-client-in-vanilla-js-d2a09aee7c6c
+const typesQuery = "{ pokemon_v2_type {name} }";
+const pokemonByTypeQuery = type => '{ pokemon_v2_pokemon(limit: 10, where: {pokemon_v2_pokemontypes: {pokemon_v2_type: {name: {_eq: "'+type+'"}}}}, order_by: {id: asc}) { name id }}';
+
+const optionsType = {
+    method: "post",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        query: typesQuery
+    })};
+
+const loadTypes = () => {
+    const getTypes = async () => {
+    const res = await fetch("https://beta.pokeapi.co/graphql/v1beta", optionsType); 
+
+    if(res.status !== 200 ) throw new Error("no se puede obtener la info");
+         const data = await res.json();
+          return data;
+    };
+    const handleTypes = getTypes()
+                        .then( data => console.log("resuelto / carga tipos", renderTypes(data.data.pokemon_v2_type)))
+                        .catch(err => console.log("rechazado", err.message));
+}
+
+const renderTypes = data => {
+    data.forEach( data => {
+        let tipos = document.querySelector("#tipos");
+        let opt = document.createElement("option");
+        opt.value = data.name;
+        opt.text = data.name
+        tipos.add(opt, null);
+        console.log(data.name)
+    });
+}
+
+const optionsPokemon = type => { return { method: "post", 
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ 
+                            query: pokemonByTypeQuery(type)
+                        })}};
+
+
+
+const loadPokemon = type =>  {
+    const getTypes = async () => {
+    const res = await fetch("https://beta.pokeapi.co/graphql/v1beta", optionsPokemon(type)); 
+
+    if(res.status !== 200 ) throw new Error("no se puede obtener la info");
+         const data = await res.json();
+          return data;
+    };
+    const handleTypes = getTypes()
+                        .then( data => console.log("resuelto / carga pokemon", renderPokemon(data.data.pokemon_v2_pokemon)))
+                        .catch(err => console.log("rechazado", err.message));
+};
+
+const renderPokemon = data => {
+    while (pokemones.firstChild) pokemones.removeChild(pokemones.firstChild);
+    data.forEach( data => {
+        let pokemones = document.getElementById("pokemones");
+        let img = document.createElement("img");
+        img.setAttribute("src","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/"+data.id+".png");
+        img.setAttribute("alt", data.name);
+        img.setAttribute("id", data.name);
+        pokemones.appendChild(img);
+    });
+};
+
+
+document.addEventListener("change", () => {
+    let value = document.getElementById("tipos").value;
+    loadPokemon(value);
+});
+
+loadTypes();
+
+
+    </script>
+</head>
+<body>
+    <select id="tipos">
+        <option>Selecciona un tipo</option>
+    </select>
+    <div id="pokemones"></div>
+</body>
+</html>
