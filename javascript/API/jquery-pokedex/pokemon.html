@@ -16,6 +16,8 @@
             background-size: cover;
         }
 
+        .ui-dialog {position:fixed;}
+
         .ui-widget.ui-widget-content {
             border: 5px solid red;
             
@@ -52,7 +54,7 @@
 
         #container {
             margin: 0 auto;
-            width: 500px;
+            width: 530px;
             background-color: rgb(247, 247, 247);
             border-radius: 50px 20px;
             border: 2px solid red;
@@ -60,12 +62,32 @@
         }
 
         #truco {
-            height: 200px;
+            height: 100px;
         }
 
-        .pokeimg {
+        .lista {
             margin: 5px;
+            border-radius: 50%;
         }
+        /* colores por tipo  https://upload.wikimedia.org/wikipedia/commons/9/97/Pokemon_Type_Chart.svg */
+        .normal { background-color: #a8a878 ;}
+        .fire { background-color: #f08030;}
+        .water { background-color: #6890f0;}
+        .grass { background-color: #78c850;}
+        .electric { background-color: #f8d030;}
+        .ice {background-color: #98d8d8;}
+        .fighting {background-color: #c03028;}
+        .poison {background-color: #a040a0;}
+        .ground {background-color: #e0c068;}
+        .flying {background-color: #a890f0;}
+        .psychic {background-color: #f85888;}
+        .bug {background-color:#a8b820 ;}
+        .rock {background-color:#b8a038 ;}
+        .ghost {background-color: #705898;}
+        .dragon {background-color: #7038f8 ;}
+        .dark {background-color:#705848;}
+        .steel {background-color: #b8b8d0;}
+        .fairy {background-color: #ff9be1;}
      
     </style>
     
@@ -165,7 +187,7 @@
                     
                     img.setAttribute("src","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+i+".png");
                     img.setAttribute("id", i);
-                    
+                    img.classList.add("lista")
                     document.querySelector("#container").appendChild(img);
                 }
             
@@ -180,6 +202,8 @@
                 }
             
             $("#pokedex").dialog("open");
+
+           
             });
 
             asignarTipo();
@@ -190,21 +214,25 @@
             
         
             cargarPokemones(true);
+
             
-            $(window).scroll(function() {
-                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                    cargarPokemones(false);
-                    $("#pokedex").dialog("close");
-            }
-            });
-            
-           
             $("#pokedex").dialog({autoOpen: false, 
                 show: {effect: "fade"}, 
                 hide: {effect: "fade"},
                 resizable: false,
                 position: {my: "right-100% top", at: "top+5%"}
 
+            });
+
+            $(window).scroll(function() {
+                //console.log("document "+ $(document).height())
+                //console.log("window "+ $(window).height())
+                //console.log("scroll "+ $(window).scrollTop())
+                //console.log($(".ui-dialog").css("top"));
+                
+                if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+                    cargarPokemones(false);
+                }
             });
 
             
