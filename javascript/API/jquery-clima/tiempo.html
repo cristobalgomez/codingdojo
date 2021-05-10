@@ -13,7 +13,7 @@
         $("#tiempo").submit(function(e) {
             e.preventDefault();
             let peticion = $(this).serializeArray();
-            $.get("http://api.openweathermap.org/data/2.5/weather?q="+peticion[0].value+","+peticion[1].value+"&APPID=77e64ed9f74dff0a7d1ebb680e7a5280",
+            $.get("http://api.openweathermap.org/data/2.5/weather?q="+peticion[0].value+","+peticion[1].value+"&APPID=",
             function(res) {
                 $("#descripcion").text(peticion[0].value+", "+peticion[1].value+": "+ res.weather[0].description);
                 $("#grados").text("Temperatura: "+ (res.main.temp-273.15)+"\xB0C");
