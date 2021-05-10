@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game of Thrones</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        div {
+            width: 50%;
+            margin: 0 auto;
+        }
+        .baratheon   {
+            background: no-repeat url("gameofthrones/baratheon.png");
+            height: 100px;
+            background-size: 100%;
+            background-position: 55% 75%;
+        }
+
+        .targaryen {
+            background: no-repeat url("gameofthrones/targaryen.jpg");
+            height: 100px;
+            background-size: 100%;
+            background-position: 55% 25%;
+        }
+        .lannister {
+            background: no-repeat url("gameofthrones/lannister.jpg");
+            height: 100px;
+            background-size: 100%;
+            background-position: 55% 25%;
+        }
+        .stark {
+            background: no-repeat url("gameofthrones/stark.jpg");
+            height: 100px;
+            background-size: 100%;
+            background-position: 55% 30%;
+        }
+        .info {
+            display: none;
+        }
+    </style>
+    <script>
+        //362, 229, 378, 16
+    const casas = [];
+    
+    
+        
+    function cargarDatos() {
+        const casasID = [16,229,362,378]
+        casasID.forEach( (id, idx) => {
+            $.get("https://anapioficeandfire.com/api/houses/"+id, function(res) {
+                renderizarDatos({name: res.name, titles:res.titles.join(", "),
+                                words: res.words || "desconocido"
+                }, idx);
+                }, "json");
+            });
+           
+    }
+    cargarDatos();
+
+    function renderizarDatos(datos,index) {
+        let contenido = "<p>Name: " + datos.name+"</p>";
+        contenido += "<p>Words: " + datos.words+"</p>";
+        contenido += "<p>Titles: " + datos.titles+"</p>";
+
+        $(".info").eq(index).html(contenido);
+    }
+
+    $(document).ready(function() {
+        $("div").click(function(e) {
+            //e.stopPropagation();
+            console.log($(this).attr("id"));
+            if($(this).next().hasClass("info")) {
+                $(this).next().slideToggle(500);
+                $(".info").not($(this).next()).slideUp(500);
+                clicked = $(this).attr("id");
+                
+            
+            }
+                
+        }) 
+    });
+    </script>
+</head>
+<body>
+    
+        <div class="baratheon" id="16"></div>
+        <div class="info">hola</div>
+        <div class="lannister" id="229"></div>
+        <div class="info">hola</div>
+        <div class="stark" id="362"></div>
+        <div class="info">hola</div>
+        <div class="targaryen" id="378"></div>
+        <div class="info">hola</div>
+    
+</body>
+</html>
