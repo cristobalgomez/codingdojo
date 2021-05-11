@@ -6,19 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El tiempo en tu ciudad</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+        height: 70%;
+          
+        }
+  
+        /* Optional: Makes the sample page fill the window. */
+        
+        html,
+        body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          
+        }
+
+        #formulario {
+            margin-top: 50px;
+            width: 300px;
+            margin: 0 auto;
+        }
+    </style>
     <script>
-    let tiempo;
+    let map;
+    const mapaConfig = { lat: -29.4400623, lng: -58.6055241, zoom: 4 }
+    function primeraLetraMayuscula(str) {
+            return str.charAt(0).toUpperCase()+str.slice(1);
+    }
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: mapaConfig.lat, lng: mapaConfig.lng },
+        zoom: mapaConfig.zoom,
+    });
+    }
 
     $(document).ready(function() {
         $("#tiempo").submit(function(e) {
             e.preventDefault();
             let peticion = $(this).serializeArray();
-            $.get("http://api.openweathermap.org/data/2.5/weather?q="+peticion[0].value+","+peticion[1].value+"&APPID=",
+            $.get("http://api.openweathermap.org/data/2.5/weather?q="+peticion[0].value+","+peticion[1].value+"&APPID=77e64ed9f74dff0a7d1ebb680e7a5280",
             function(res) {
-                $("#descripcion").text(peticion[0].value+", "+peticion[1].value+": "+ res.weather[0].description);
-                $("#grados").text("Temperatura: "+ (res.main.temp-273.15)+"\xB0C");
+                $("#descripcion").text(primeraLetraMayuscula(peticion[0].value)+", "+primeraLetraMayuscula(peticion[1].value)+": "+ res.weather[0].description);
+                $("#grados").text("Temperatura: "+ (res.main.temp-273.15).toFixed(2)+"\xB0C");
                 $("#coordenadas").text("Coordeandas: Lat "+ res.coord.lat+"- lon "+res.coord.lon);
-                tiempo = res;
+                mapaConfig.lat = res.coord.lat;
+                mapaConfig.lng = res.coord.lon;
+                mapaConfig.zoom = 10;
+                initMap();
             }, "json");
         })
     });
@@ -27,12 +65,12 @@
     </script>
 </head>
 <body>
-    <div>
+    <div id="formulario">
         <form id="tiempo" action="asd">
             <label for="ciudad"></label>
-            <input type="text" name="ciudad" id="ciudad">
+            <input type="text" name="ciudad" id="ciudad" placeholder="Ciudad">
             <label for="pais"></label>
-            <input type="text" name="pais" id="pais">
+            <input type="text" name="pais" id="pais" placeholder="Pais">
             <input type="submit" value="Buscar">
         </form>
         <div id="informacion">
@@ -40,7 +78,14 @@
             <p id="grados"></p>
             <p id="coordenadas"></p>
         </div>
-
     </div>
+
+        <div id="map"></div>
+
+        <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&region=CL&language=CL&&callback=initMap"
+          async></script>
+
+    
 </body>
 </html>
