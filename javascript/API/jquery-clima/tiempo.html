@@ -32,7 +32,7 @@
     </style>
     <script>
     let map;
-    const mapaConfig = { lat: -29.4400623, lng: -58.6055241, zoom: 4 }
+    const mapaConfig = { lat: -29.4400623, lng: -58.6055241, zoom: 4}
     function primeraLetraMayuscula(str) {
             return str.charAt(0).toUpperCase()+str.slice(1);
     }
@@ -57,6 +57,9 @@
                 mapaConfig.lng = res.coord.lon;
                 mapaConfig.zoom = 10;
                 initMap();
+                new google.maps.Marker({ position: mapaConfig, map, title: primeraLetraMayuscula(peticion[1].value),
+  });
+
             }, "json");
         })
     });
