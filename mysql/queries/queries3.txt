@@ -1,0 +1,218 @@
+
+
+###################1
+
+mysql> select customer.first_name, customer.last_name, customer.email, address.address, city.city from customer
+    -> join address on customer.address_id = address.address_id
+    -> join city on city.city_id = address.city_id
+    -> where city.city_id = 312;
+
+
++------------+-----------+-----------------------------------+--------------------+
+| first_name | last_name | email                             | address            |
++------------+-----------+-----------------------------------+--------------------+
+| MATTIE     | HOFFMAN   | MATTIE.HOFFMAN@sakilacustomer.org | 1497 Yuzhou Drive  |
+| CECIL      | VINES     | CECIL.VINES@sakilacustomer.org    | 548 Uruapan Street |
++------------+-----------+-----------------------------------+--------------------+
+2 rows in set (0.00 sec)
+
+
+########################2
+
+mysql> select film.title, film.description, film.release_year, film.rating, film.special_features, category.name from film join film_category on film.film_id = film_category.film_id join category on film_category.category_id = category.category_id where category.name = 'Comedy';
+
++-------------------------+--------------------------------------------------------------------------------------------------------------------------+--------------+--------+--------------------------------------------------------+--------+
+| title                   | description                                                                                                              | release_year | rating | special_features                                       | name   |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------+--------------+--------+--------------------------------------------------------+--------+
+| AIRPLANE SIERRA         | A Touching Saga of a Hunter And a Butler who must Discover a Butler in A Jet Boat                                        |         2006 | PG-13  | Trailers,Deleted Scenes                                | Comedy |
+| ANTHEM LUKE             | A Touching Panorama of a Waitress And a Woman who must Outrace a Dog in An Abandoned Amusement Park                      |         2006 | PG-13  | Deleted Scenes,Behind the Scenes                       | Comedy |
+| BRINGING HYSTERICAL     | A Fateful Saga of a A Shark And a Technical Writer who must Find a Woman in A Jet Boat                                   |         2006 | PG     | Trailers                                               | Comedy |
+| CAPER MOTIONS           | A Fateful Saga of a Moose And a Car who must Pursue a Woman in A MySQL Convention                                        |         2006 | G      | Trailers,Commentaries,Deleted Scenes                   | Comedy |
+| CAT CONEHEADS           | A Fast-Paced Panorama of a Girl And a A Shark who must Confront a Boy in Ancient India                                   |         2006 | G      | Commentaries,Deleted Scenes                            | Comedy |
+| CLOSER BANG             | A Unbelieveable Panorama of a Frisbee And a Hunter who must Vanquish a Monkey in Ancient India                           |         2006 | R      | Trailers,Behind the Scenes                             | Comedy |
+| CONNECTION MICROCOSMOS  | A Fateful Documentary of a Crocodile And a Husband who must Face a Husband in The First Manned Space Station             |         2006 | G      | Deleted Scenes,Behind the Scenes                       | Comedy |
+| CONTROL ANTHEM          | A Fateful Documentary of a Robot And a Student who must Battle a Cat in A Monastery                                      |         2006 | G      | Commentaries                                           | Comedy |
+| CRAZY HOME              | A Fanciful Panorama of a Boy And a Woman who must Vanquish a Database Administrator in The Outback                       |         2006 | PG     | Commentaries,Deleted Scenes                            | Comedy |
+| DADDY PITTSBURGH        | A Epic Story of a A Shark And a Student who must Confront a Explorer in The Gulf of Mexico                               |         2006 | G      | Deleted Scenes,Behind the Scenes                       | Comedy |
+| DOOM DANCING            | A Astounding Panorama of a Car And a Mad Scientist who must Battle a Lumberjack in A MySQL Convention                    |         2006 | R      | Trailers,Commentaries                                  | Comedy |
+| DOWNHILL ENOUGH         | A Emotional Tale of a Pastry Chef And a Forensic Psychologist who must Succumb a Monkey in The Sahara Desert             |         2006 | G      | Trailers,Commentaries,Deleted Scenes                   | Comedy |
+| DYING MAKER             | A Intrepid Tale of a Boat And a Monkey who must Kill a Cat in California                                                 |         2006 | PG     | Behind the Scenes                                      | Comedy |
+| ELEMENT FREDDY          | A Awe-Inspiring Reflection of a Waitress And a Squirrel who must Kill a Mad Cow in A Jet Boat                            |         2006 | NC-17  | Commentaries,Behind the Scenes                         | Comedy |
+| FERRIS MOTHER           | A Touching Display of a Frisbee And a Frisbee who must Kill a Girl in The Gulf of Mexico                                 |         2006 | PG     | Trailers,Deleted Scenes,Behind the Scenes              | Comedy |
+| FIREBALL PHILADELPHIA   | A Amazing Yarn of a Dentist And a A Shark who must Vanquish a Madman in An Abandoned Mine Shaft                          |         2006 | PG     | Trailers,Commentaries,Behind the Scenes                | Comedy |
+| FLINTSTONES HAPPINESS   | A Fateful Story of a Husband And a Moose who must Vanquish a Boy in California                                           |         2006 | PG-13  | Trailers,Commentaries,Deleted Scenes,Behind the Scenes | Comedy |
+| FRANKENSTEIN STRANGER   | A Insightful Character Study of a Feminist And a Pioneer who must Pursue a Pastry Chef in Nigeria                        |         2006 | NC-17  | Deleted Scenes,Behind the Scenes                       | Comedy |
+| FREEDOM CLEOPATRA       | A Emotional Reflection of a Dentist And a Mad Cow who must Face a Squirrel in A Baloon                                   |         2006 | PG-13  | Trailers,Commentaries,Behind the Scenes                | Comedy |
+| GOLD RIVER              | A Taut Documentary of a Database Administrator And a Waitress who must Reach a Mad Scientist in A Baloon Factory         |         2006 | R      | Trailers,Commentaries,Deleted Scenes,Behind the Scenes | Comedy |
+| GROUNDHOG UNCUT         | A Brilliant Panorama of a Astronaut And a Technical Writer who must Discover a Butler in A Manhattan Penthouse           |         2006 | PG-13  | Trailers,Commentaries,Deleted Scenes,Behind the Scenes | Comedy |
+| GUNFIGHT MOON           | A Epic Reflection of a Pastry Chef And a Explorer who must Reach a Dentist in The Sahara Desert                          |         2006 | NC-17  | Deleted Scenes,Behind the Scenes                       | Comedy |
+| HATE HANDICAP           | A Intrepid Reflection of a Mad Scientist And a Pioneer who must Overcome a Hunter in The First Manned Space Station      |         2006 | PG     | Trailers,Commentaries,Behind the Scenes                | Comedy |
+| HEAVEN FREEDOM          | A Intrepid Story of a Butler And a Car who must Vanquish a Man in New Orleans                                            |         2006 | PG     | Commentaries                                           | Comedy |
+| HEDWIG ALTER            | A Action-Packed Yarn of a Womanizer And a Lumberjack who must Chase a Sumo Wrestler in A Monastery                       |         2006 | NC-17  | Trailers,Commentaries,Behind the Scenes                | Comedy |
+| HURRICANE AFFAIR        | A Lacklusture Epistle of a Database Administrator And a Woman who must Meet a Hunter in An Abandoned Mine Shaft          |         2006 | PG     | Trailers,Commentaries,Behind the Scenes                | Comedy |
+| HUSTLER PARTY           | A Emotional Reflection of a Sumo Wrestler And a Monkey who must Conquer a Robot in The Sahara Desert                     |         2006 | NC-17  | Trailers,Commentaries,Behind the Scenes                | Comedy |
+| JAWS HARRY              | A Thrilling Display of a Database Administrator And a Monkey who must Overcome a Dog in An Abandoned Fun House           |         2006 | G      | Deleted Scenes                                         | Comedy |
+| KNOCK WARLOCK           | A Unbelieveable Story of a Teacher And a Boat who must Confront a Moose in A Baloon                                      |         2006 | PG-13  | Trailers                                               | Comedy |
+| LIFE TWISTED            | A Thrilling Reflection of a Teacher And a Composer who must Find a Man in The First Manned Space Station                 |         2006 | NC-17  | Commentaries,Deleted Scenes                            | Comedy |
+| LION UNCUT              | A Intrepid Display of a Pastry Chef And a Cat who must Kill a A Shark in Ancient China                                   |         2006 | PG     | Trailers,Deleted Scenes                                | Comedy |
+| LONELY ELEPHANT         | A Intrepid Story of a Student And a Dog who must Challenge a Explorer in Soviet Georgia                                  |         2006 | G      | Trailers,Commentaries,Deleted Scenes,Behind the Scenes | Comedy |
+| MALLRATS UNITED         | A Thrilling Yarn of a Waitress And a Dentist who must Find a Hunter in A Monastery                                       |         2006 | PG     | Trailers,Commentaries,Deleted Scenes                   | Comedy |
+| MEMENTO ZOOLANDER       | A Touching Epistle of a Squirrel And a Explorer who must Redeem a Pastry Chef in The Sahara Desert                       |         2006 | NC-17  | Behind the Scenes                                      | Comedy |
+| MULAN MOON              | A Emotional Saga of a Womanizer And a Pioneer who must Overcome a Dentist in A Baloon                                    |         2006 | G      | Behind the Scenes                                      | Comedy |
+| MYSTIC TRUMAN           | A Epic Yarn of a Teacher And a Hunter who must Outgun a Explorer in Soviet Georgia                                       |         2006 | NC-17  | Commentaries,Behind the Scenes                         | Comedy |
+| OPERATION OPERATION     | A Intrepid Character Study of a Man And a Frisbee who must Overcome a Madman in Ancient China                            |         2006 | G      | Trailers,Commentaries,Deleted Scenes,Behind the Scenes | Comedy |
+| PARADISE SABRINA        | A Intrepid Yarn of a Car And a Moose who must Outrace a Crocodile in A Manhattan Penthouse                               |         2006 | PG-13  | Commentaries,Deleted Scenes,Behind the Scenes          | Comedy |
+| PARTY KNOCK             | A Fateful Display of a Technical Writer And a Butler who must Battle a Sumo Wrestler in An Abandoned Mine Shaft          |         2006 | PG     | Trailers,Behind the Scenes                             | Comedy |
+| PERFECT GROOVE          | A Thrilling Yarn of a Dog And a Dog who must Build a Husband in A Baloon                                                 |         2006 | PG-13  | Commentaries,Deleted Scenes,Behind the Scenes          | Comedy |
+| PINOCCHIO SIMON         | A Action-Packed Reflection of a Mad Scientist And a A Shark who must Find a Feminist in California                       |         2006 | PG     | Commentaries,Behind the Scenes                         | Comedy |
+| PURE RUNNER             | A Thoughtful Documentary of a Student And a Madman who must Challenge a Squirrel in A Manhattan Penthouse                |         2006 | NC-17  | Trailers,Deleted Scenes                                | Comedy |
+| RUSHMORE MERMAID        | A Boring Story of a Woman And a Moose who must Reach a Husband in A Shark Tank                                           |         2006 | PG-13  | Trailers,Commentaries,Deleted Scenes                   | Comedy |
+| SADDLE ANTITRUST        | A Stunning Epistle of a Feminist And a A Shark who must Battle a Woman in An Abandoned Fun House                         |         2006 | PG-13  | Trailers,Deleted Scenes                                | Comedy |
+| SATURN NAME             | A Fateful Epistle of a Butler And a Boy who must Redeem a Teacher in Berlin                                              |         2006 | R      | Trailers,Commentaries,Deleted Scenes,Behind the Scenes | Comedy |
+| SEARCHERS WAIT          | A Fast-Paced Tale of a Car And a Mad Scientist who must Kill a Womanizer in Ancient Japan                                |         2006 | NC-17  | Trailers,Commentaries,Deleted Scenes,Behind the Scenes | Comedy |
+| SNATCH SLIPPER          | A Insightful Panorama of a Woman And a Feminist who must Defeat a Forensic Psychologist in Berlin                        |         2006 | PG     | Commentaries                                           | Comedy |
+| STAGE WORLD             | A Lacklusture Panorama of a Woman And a Frisbee who must Chase a Crocodile in A Jet Boat                                 |         2006 | PG     | Commentaries,Behind the Scenes                         | Comedy |
+| STRICTLY SCARFACE       | A Touching Reflection of a Crocodile And a Dog who must Chase a Hunter in An Abandoned Fun House                         |         2006 | PG-13  | Commentaries,Deleted Scenes,Behind the Scenes          | Comedy |
+| SUBMARINE BED           | A Amazing Display of a Car And a Monkey who must Fight a Teacher in Soviet Georgia                                       |         2006 | R      | Trailers                                               | Comedy |
+| SWEDEN SHINING          | A Taut Documentary of a Car And a Robot who must Conquer a Boy in The Canadian Rockies                                   |         2006 | PG     | Deleted Scenes,Behind the Scenes                       | Comedy |
+| TRAINSPOTTING STRANGERS | A Fast-Paced Drama of a Pioneer And a Mad Cow who must Challenge a Madman in Ancient Japan                               |         2006 | PG-13  | Trailers                                               | Comedy |
+| TRAMP OTHERS            | A Brilliant Display of a Composer And a Cat who must Succumb a A Shark in Ancient India                                  |         2006 | PG     | Deleted Scenes                                         | Comedy |
+| VALLEY PACKER           | A Astounding Documentary of a Astronaut And a Boy who must Outrace a Sumo Wrestler in Berlin                             |         2006 | G      | Commentaries,Deleted Scenes                            | Comedy |
+| VELVET TERMINATOR       | A Lacklusture Tale of a Pastry Chef And a Technical Writer who must Confront a Crocodile in An Abandoned Amusement Park  |         2006 | R      | Behind the Scenes                                      | Comedy |
+| VERTIGO NORTHWEST       | A Unbelieveable Display of a Mad Scientist And a Mad Scientist who must Outgun a Mad Cow in Ancient Japan                |         2006 | R      | Commentaries,Behind the Scenes                         | Comedy |
+| WISDOM WORKER           | A Unbelieveable Saga of a Forensic Psychologist And a Student who must Face a Squirrel in The First Manned Space Station |         2006 | R      | Deleted Scenes,Behind the Scenes                       | Comedy |
+| ZORRO ARK               | A Intrepid Panorama of a Mad Scientist And a Boy who must Redeem a Boy in A Monastery                                    |         2006 | NC-17  | Trailers,Commentaries,Behind the Scenes                | Comedy |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------+--------------+--------+--------------------------------------------------------+--------+
+58 rows in set (0.00 sec)
+
+
+
+#######################3
+
+mysql> select actor.actor_id, actor.first_name, actor.last_name, film.film_id, film.title, film.description, film.release_year from actor
+    -> join film_actor on actor.actor_id = film_actor.actor_id
+    -> join film on film_actor.film_id = film.film_id
+    -> where actor.actor_id = 5;
++----------+------------+--------------+---------+----------------------+-------------------------------------------------------------------------------------------------------------------------+--------------+
+| actor_id | first_name | last_name    | film_id | title                | description                                                                                                             | release_year |
++----------+------------+--------------+---------+----------------------+-------------------------------------------------------------------------------------------------------------------------+--------------+
+|        5 | JOHNNY     | LOLLOBRIGIDA |      19 | AMADEUS HOLY         | A Emotional Display of a Pioneer And a Technical Writer who must Battle a Man in A Baloon                               |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |      54 | BANGER PINOCCHIO     | A Awe-Inspiring Drama of a Car And a Pastry Chef who must Chase a Crocodile in The First Manned Space Station           |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |      85 | BONNIE HOLOCAUST     | A Fast-Paced Story of a Crocodile And a Robot who must Find a Moose in Ancient Japan                                    |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     146 | CHITTY LOCK          | A Boring Epistle of a Boat And a Database Administrator who must Kill a Sumo Wrestler in The First Manned Space Station |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     171 | COMMANDMENTS EXPRESS | A Fanciful Saga of a Student And a Mad Scientist who must Battle a Hunter in An Abandoned Mine Shaft                    |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     172 | CONEHEADS SMOOCHY    | A Touching Story of a Womanizer And a Composer who must Pursue a Husband in Nigeria                                     |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     202 | DADDY PITTSBURGH     | A Epic Story of a A Shark And a Student who must Confront a Explorer in The Gulf of Mexico                              |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     203 | DAISY MENAGERIE      | A Fast-Paced Saga of a Pastry Chef And a Monkey who must Sink a Composer in Ancient India                               |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     286 | ENOUGH RAGING        | A Astounding Character Study of a Boat And a Secret Agent who must Find a Mad Cow in The Sahara Desert                  |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     288 | ESCAPE METROPOLIS    | A Taut Yarn of a Astronaut And a Technical Writer who must Outgun a Boat in New Orleans                                 |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     316 | FIRE WOLVES          | A Intrepid Documentary of a Frisbee And a Dog who must Outrace a Lumberjack in Nigeria                                  |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     340 | FRONTIER CABIN       | A Emotional Story of a Madman And a Waitress who must Battle a Teacher in An Abandoned Fun House                        |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     369 | GOODFELLAS SALUTE    | A Unbelieveable Tale of a Dog And a Explorer who must Sink a Mad Cow in A Baloon Factory                                |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     375 | GRAIL FRANKENSTEIN   | A Unbelieveable Saga of a Teacher And a Monkey who must Fight a Girl in An Abandoned Mine Shaft                         |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     383 | GROOVE FICTION       | A Unbelieveable Reflection of a Moose And a A Shark who must Defeat a Lumberjack in An Abandoned Mine Shaft             |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     392 | HALL CASSIDY         | A Beautiful Panorama of a Pastry Chef And a A Shark who must Battle a Pioneer in Soviet Georgia                         |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     411 | HEAVENLY GUN         | A Beautiful Yarn of a Forensic Psychologist And a Frisbee who must Battle a Moose in A Jet Boat                         |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     503 | KRAMER CHOCOLATE     | A Amazing Yarn of a Robot And a Pastry Chef who must Redeem a Mad Scientist in The Outback                              |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     535 | LOVE SUICIDES        | A Brilliant Panorama of a Hunter And a Explorer who must Pursue a Dentist in An Abandoned Fun House                     |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     571 | METAL ARMAGEDDON     | A Thrilling Display of a Lumberjack And a Crocodile who must Meet a Monkey in A Baloon Factory                          |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     650 | PACIFIC AMISTAD      | A Thrilling Yarn of a Dog And a Moose who must Kill a Pastry Chef in A Manhattan Penthouse                              |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     665 | PATTON INTERVIEW     | A Thrilling Documentary of a Composer And a Secret Agent who must Succumb a Cat in Berlin                               |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     687 | POCUS PULP           | A Intrepid Yarn of a Frisbee And a Dog who must Build a Astronaut in A Baloon Factory                                   |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     730 | RIDGEMONT SUBMARINE  | A Unbelieveable Drama of a Waitress And a Composer who must Sink a Mad Cow in Ancient Japan                             |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     732 | RINGS HEARTBREAKERS  | A Amazing Yarn of a Sumo Wrestler And a Boat who must Conquer a Waitress in New Orleans                                 |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     811 | SMILE EARRING        | A Intrepid Drama of a Teacher And a Butler who must Build a Pastry Chef in Berlin                                       |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     817 | SOLDIERS EVOLUTION   | A Lacklusture Panorama of a A Shark And a Pioneer who must Confront a Student in The First Manned Space Station         |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     841 | STAR OPERATION       | A Insightful Character Study of a Girl And a Car who must Pursue a Mad Cow in A Shark Tank                              |         2006 |
+|        5 | JOHNNY     | LOLLOBRIGIDA |     865 | SUNRISE LEAGUE       | A Beautiful Epistle of a Madman And a Butler who must Face a Crocodile in A Manhattan Penthouse                         |         2006 |
++----------+------------+--------------+---------+----------------------+-------------------------------------------------------------------------------------------------------------------------+--------------+
+29 rows in set (0.00 sec)
+
+
+###################### 4
+
+mysql> select customer.first_name, customer.last_name, customer.email, address.address from customer join address on customer.address_id = address.address_id join city on address.city_id = city.city_id join store on customer.store_id = store.store_id where store.store_id = 1 and city.city_id in (1,32,312,459);
++------------+-------------+---------------------------------------+-------------------------------+
+| first_name | last_name   | email                                 | address                       |
++------------+-------------+---------------------------------------+-------------------------------+
+| JULIE      | SANCHEZ     | JULIE.SANCHEZ@sakilacustomer.org      | 939 Probolinggo Loop          |
+| CECIL      | VINES       | CECIL.VINES@sakilacustomer.org        | 548 Uruapan Street            |
+| NELSON     | CHRISTENSON | NELSON.CHRISTENSON@sakilacustomer.org | 1764 Jalib al-Shuyukh Parkway |
++------------+-------------+---------------------------------------+-------------------------------+
+3 rows in set (0.00 sec)
+
+################### 5
+
+mysql> select film.title, film.description, film.release_year, film.rating, film.special_features from film
+    -> join film_actor on film.film_id = film_actor.film_id
+    -> where film.rating = 'G' 
+    -> and film.special_features LIKE '%Behind the scenes'
+    -> and film_actor.actor_id = 15;
++---------------------+---------------------------------------------------------------------------------------------------------------------+--------------+--------+-----------------------------------------------+
+| title               | description                                                                                                         | release_year | rating | special_features                              |
++---------------------+---------------------------------------------------------------------------------------------------------------------+--------------+--------+-----------------------------------------------+
+| BORROWERS BEDAZZLED | A Brilliant Epistle of a Teacher And a Sumo Wrestler who must Defeat a Man in An Abandoned Fun House                |         2006 | G      | Commentaries,Deleted Scenes,Behind the Scenes |
+| NOON PAPI           | A Unbelieveable Character Study of a Mad Scientist And a Astronaut who must Find a Pioneer in A Manhattan Penthouse |         2006 | G      | Behind the Scenes                             |
+| WEREWOLF LOLA       | A Fanciful Story of a Man And a Sumo Wrestler who must Outrace a Student in A Monastery                             |         2006 | G      | Trailers,Behind the Scenes                    |
++---------------------+---------------------------------------------------------------------------------------------------------------------+--------------+--------+-----------------------------------------------+
+3 rows in set (0.00 sec)
+
+
+
+################ 6
+
+mysql> select film.film_id, film.title, actor.actor_id, actor.first_name, actor.last_name, actor.last_update from actor join film_actor on actor.actor_id = film_actor.actor_id join film on film_actor.film_id = film.film_id where film.film_id = 369;
++---------+-------------------+----------+------------+--------------+---------------------+
+| film_id | title             | actor_id | first_name | last_name    | last_update         |
++---------+-------------------+----------+------------+--------------+---------------------+
+|     369 | GOODFELLAS SALUTE |        2 | NICK       | WAHLBERG     | 2006-02-14 12:34:33 |
+|     369 | GOODFELLAS SALUTE |        5 | JOHNNY     | LOLLOBRIGIDA | 2006-02-14 12:34:33 |
+|     369 | GOODFELLAS SALUTE |       22 | ELVIS      | MARX         | 2006-02-14 12:34:33 |
+|     369 | GOODFELLAS SALUTE |       83 | BEN        | WILLIS       | 2006-02-14 12:34:33 |
+|     369 | GOODFELLAS SALUTE |      107 | GINA       | DEGENERES    | 2006-02-14 12:34:33 |
+|     369 | GOODFELLAS SALUTE |      110 | SUSAN      | DAVIS        | 2006-02-14 12:34:33 |
+|     369 | GOODFELLAS SALUTE |      126 | FRANCES    | TOMEI        | 2006-02-14 12:34:33 |
+|     369 | GOODFELLAS SALUTE |      197 | REESE      | WEST         | 2006-02-14 12:34:33 |
++---------+-------------------+----------+------------+--------------+---------------------+
+8 rows in set (0.00 sec)
+
+
+############### 7
+
+mysql> select film.film_id, film.title, film.description, film.release_year, film.rating, film.special_features, category.name from film join film_category on film.film_id = film_category.film_id join category on film_category.category_id = category.category_id where film.rental_rate = 2.99 and category.name = 'Drama';
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------+--------------+--------+--------------------------------------------------------+-------+
+| film_id | title             | description                                                                                                               | release_year | rating | special_features                                       | name  |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------+--------------+--------+--------------------------------------------------------+-------+
+|      33 | APOLLO TEEN       | A Action-Packed Reflection of a Crocodile And a Explorer who must Find a Sumo Wrestler in An Abandoned Mine Shaft         |         2006 | PG-13  | Trailers,Commentaries,Deleted Scenes,Behind the Scenes | Drama |
+|     107 | BUNCH MINDS       | A Emotional Story of a Feminist And a Feminist who must Escape a Pastry Chef in A MySQL Convention                        |         2006 | G      | Behind the Scenes                                      | Drama |
+|     146 | CHITTY LOCK       | A Boring Epistle of a Boat And a Database Administrator who must Kill a Sumo Wrestler in The First Manned Space Station   |         2006 | G      | Commentaries                                           | Drama |
+|     209 | DARKNESS WAR      | A Touching Documentary of a Husband And a Hunter who must Escape a Boy in The Sahara Desert                               |         2006 | NC-17  | Deleted Scenes,Behind the Scenes                       | Drama |
+|     230 | DIARY PANIC       | A Thoughtful Character Study of a Frisbee And a Mad Cow who must Outgun a Man in Ancient India                            |         2006 | G      | Commentaries,Behind the Scenes                         | Drama |
+|     368 | GONE TROUBLE      | A Insightful Character Study of a Mad Cow And a Forensic Psychologist who must Conquer a A Shark in A Manhattan Penthouse |         2006 | R      | Deleted Scenes,Behind the Scenes                       | Drama |
+|     473 | JACKET FRISCO     | A Insightful Reflection of a Womanizer And a Husband who must Conquer a Pastry Chef in A Baloon                           |         2006 | PG-13  | Trailers,Deleted Scenes,Behind the Scenes              | Drama |
+|     514 | LEBOWSKI SOLDIERS | A Beautiful Epistle of a Secret Agent And a Pioneer who must Chase a Astronaut in Ancient China                           |         2006 | PG-13  | Commentaries,Deleted Scenes                            | Drama |
+|     539 | LUCK OPUS         | A Boring Display of a Moose And a Squirrel who must Outrace a Teacher in A Shark Tank                                     |         2006 | NC-17  | Trailers,Commentaries,Behind the Scenes                | Drama |
+|     643 | ORIENT CLOSER     | A Astounding Epistle of a Technical Writer And a Teacher who must Fight a Squirrel in The Sahara Desert                   |         2006 | R      | Commentaries,Deleted Scenes                            | Drama |
+|     709 | RACER EGG         | A Emotional Display of a Monkey And a Waitress who must Reach a Secret Agent in California                                |         2006 | NC-17  | Trailers,Commentaries,Deleted Scenes                   | Drama |
+|     758 | SAINTS BRIDE      | A Fateful Tale of a Technical Writer And a Composer who must Pursue a Explorer in The Gulf of Mexico                      |         2006 | G      | Deleted Scenes                                         | Drama |
+|     772 | SEA VIRGIN        | A Fast-Paced Documentary of a Technical Writer And a Pastry Chef who must Escape a Moose in A U-Boat                      |         2006 | PG     | Deleted Scenes                                         | Drama |
+|     923 | UNFAITHFUL KILL   | A Taut Documentary of a Waitress And a Mad Scientist who must Battle a Technical Writer in New Orleans                    |         2006 | R      | Commentaries,Deleted Scenes                            | Drama |
+|     958 | WARDROBE PHANTOM  | A Action-Packed Display of a Mad Cow And a Astronaut who must Kill a Car in Ancient India                                 |         2006 | G      | Trailers,Commentaries                                  | Drama |
++---------+-------------------+---------------------------------------------------------------------------------------------------------------------------+--------------+--------+--------------------------------------------------------+-------+
+15 rows in set (0.00 sec)
+
+####################### 8
+
+
+
+mysql> select film.film_id, film.title, film.description, film.release_year, film.rating, film.special_features, category.name, actor.actor_id, actor.first_name, actor.last_name from film join film_category on film.film_id = film_category.film_id join category on film_category.category_id = category.category_id join film_actor on film.film_id = film_actor.film_id join actor on film_actor.actor_id = actor.actor_id where actor.first_name like 'Sandra' and actor.last_name like 'Kilmer' and category.name = 'action';
++---------+--------------------+-------------------------------------------------------------------------------------------------+--------------+--------+--------------------------------------+--------+----------+------------+-----------+
+| film_id | title              | description                                                                                     | release_year | rating | special_features                     | name   | actor_id | first_name | last_name |
++---------+--------------------+-------------------------------------------------------------------------------------------------+--------------+--------+--------------------------------------+--------+----------+------------+-----------+
+|     105 | BULL SHAWSHANK     | A Fanciful Drama of a Moose And a Squirrel who must Conquer a Pioneer in The Canadian Rockies   |         2006 | NC-17  | Deleted Scenes                       | Action |       23 | SANDRA     | KILMER    |
+|     212 | DARN FORRESTER     | A Fateful Story of a A Shark And a Explorer who must Succumb a Technical Writer in A Jet Boat   |         2006 | G      | Deleted Scenes                       | Action |       23 | SANDRA     | KILMER    |
+|     549 | MAGNOLIA FORRESTER | A Thoughtful Documentary of a Composer And a Explorer who must Conquer a Dentist in New Orleans |         2006 | PG-13  | Trailers,Commentaries,Deleted Scenes | Action |       23 | SANDRA     | KILMER    |
++---------+--------------------+-------------------------------------------------------------------------------------------------+--------------+--------+--------------------------------------+--------+----------+------------+-----------+
+3 rows in set (0.00 sec)
+
+
