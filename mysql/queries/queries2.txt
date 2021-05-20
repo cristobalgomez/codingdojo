@@ -1,0 +1,507 @@
+
+
+###################1
+
+
+mysql> select countries.name, languages.language, languages.percentage from countries
+    -> join languages on countries.id = languages.country_id
+    -> where languages.language = 'Slovene'
+    -> order by languages.percentage desc;
++----------+----------+------------+
+| name     | language | percentage |
++----------+----------+------------+
+| Slovenia | Slovene  |       87.9 |
+| Austria  | Slovene  |        0.4 |
+| Italy    | Slovene  |        0.2 |
+| Croatia  | Slovene  |        0.0 |
++----------+----------+------------+
+4 rows in set (0.00 sec)
+
+
+
+
+###################2
+
+mysql> select countries.name, count(*) as total_cities from countries
+    -> join cities on countries.id = cities.country_id
+    -> group by countries.id
+    -> order by total_cities desc;
++---------------------------------------+--------------+
+| name                                  | total_cities |
++---------------------------------------+--------------+
+| China                                 |          363 |
+| India                                 |          341 |
+| United States                         |          274 |
+| Brazil                                |          250 |
+| Japan                                 |          248 |
+| Russian Federation                    |          189 |
+| Mexico                                |          173 |
+| Philippines                           |          136 |
+| Germany                               |           93 |
+| Indonesia                             |           85 |
+| United Kingdom                        |           81 |
+| South Korea                           |           70 |
+| Iran                                  |           67 |
+| Nigeria                               |           64 |
+| Turkey                                |           62 |
+| Spain                                 |           59 |
+| Pakistan                              |           59 |
+| Italy                                 |           58 |
+| Argentina                             |           57 |
+| Ukraine                               |           57 |
+| Canada                                |           49 |
+| Poland                                |           44 |
+| South Africa                          |           44 |
+| Taiwan                                |           42 |
+| Venezuela                             |           41 |
+| France                                |           40 |
+| Colombia                              |           38 |
+| Egypt                                 |           37 |
+| Chile                                 |           29 |
+| Romania                               |           29 |
+| Netherlands                           |           28 |
+| Bangladesh                            |           24 |
+| Saudi Arabia                          |           24 |
+| Morocco                               |           22 |
+| Peru                                  |           22 |
+| Vietnam                               |           22 |
+| Kazakstan                             |           21 |
+| Congo, The Democratic Republic of the |           18 |
+| Algeria                               |           18 |
+| Malaysia                              |           18 |
+| Uzbekistan                            |           17 |
+| Belarus                               |           16 |
+| Myanmar                               |           16 |
+| Ecuador                               |           15 |
+| Iraq                                  |           15 |
+| Sweden                                |           15 |
+| Australia                             |           14 |
+| Cuba                                  |           14 |
+| Israel                                |           14 |
+| North Korea                           |           13 |
+| Mozambique                            |           12 |
+| Sudan                                 |           12 |
+| Thailand                              |           12 |
+| Syria                                 |           11 |
+| Bulgaria                              |           10 |
+| Czech Republic                        |           10 |
+| Tanzania                              |           10 |
+| Belgium                               |            9 |
+| Hungary                               |            9 |
+| New Zealand                           |            9 |
+| Puerto Rico                           |            9 |
+| Senegal                               |            9 |
+| Bolivia                               |            8 |
+| Greece                                |            8 |
+| Kenya                                 |            8 |
+| Tunisia                               |            8 |
+| Yugoslavia                            |            8 |
+| Cameroon                              |            7 |
+| Ethiopia                              |            7 |
+| Finland                               |            7 |
+| Sri Lanka                             |            7 |
+| El Salvador                           |            7 |
+| Zambia                                |            7 |
+| Austria                               |            6 |
+| Dominican Republic                    |            6 |
+| Palestine                             |            6 |
+| Yemen                                 |            6 |
+| Zimbabwe                              |            6 |
+| Angola                                |            5 |
+| United Arab Emirates                  |            5 |
+| Switzerland                           |            5 |
+| CÃ´te dÂ’Ivoire                       |            5 |
+| Denmark                               |            5 |
+| Georgia                               |            5 |
+| Ghana                                 |            5 |
+| Jordan                                |            5 |
+| Lithuania                             |            5 |
+| Madagascar                            |            5 |
+| Norway                                |            5 |
+| Nepal                                 |            5 |
+| Oman                                  |            5 |
+| Portugal                              |            5 |
+| Paraguay                              |            5 |
+| Afghanistan                           |            4 |
+| Azerbaijan                            |            4 |
+| Benin                                 |            4 |
+| Guatemala                             |            4 |
+| Croatia                               |            4 |
+| Haiti                                 |            4 |
+| Libyan Arab Jamahiriya                |            4 |
+| Moldova                               |            4 |
+| Nicaragua                             |            4 |
+| Turkmenistan                          |            4 |
+| Armenia                               |            3 |
+| Burkina Faso                          |            3 |
+| Bosnia and Herzegovina                |            3 |
+| Honduras                              |            3 |
+| Jamaica                               |            3 |
+| Cambodia                              |            3 |
+| Kuwait                                |            3 |
+| Latvia                                |            3 |
+| Mauritius                             |            3 |
+| Niger                                 |            3 |
+| Somalia                               |            3 |
+| Slovakia                              |            3 |
+| Anguilla                              |            2 |
+| American Samoa                        |            2 |
+| Belize                                |            2 |
+| Bermuda                               |            2 |
+| Botswana                              |            2 |
+| Cocos (Keeling) Islands               |            2 |
+| Congo                                 |            2 |
+| Cyprus                                |            2 |
+| Estonia                               |            2 |
+| Micronesia, Federated States of       |            2 |
+| Guadeloupe                            |            2 |
+| Gambia                                |            2 |
+| Guam                                  |            2 |
+| Hong Kong                             |            2 |
+| Ireland                               |            2 |
+| Kyrgyzstan                            |            2 |
+| Kiribati                              |            2 |
+| Laos                                  |            2 |
+| Lebanon                               |            2 |
+| Liechtenstein                         |            2 |
+| Monaco                                |            2 |
+| Malta                                 |            2 |
+| Mauritania                            |            2 |
+| Malawi                                |            2 |
+| Nauru                                 |            2 |
+| Panama                                |            2 |
+| French Polynesia                      |            2 |
+| San Marino                            |            2 |
+| Slovenia                              |            2 |
+| Chad                                  |            2 |
+| Tajikistan                            |            2 |
+| Trinidad and Tobago                   |            2 |
+| Aruba                                 |            1 |
+| Albania                               |            1 |
+| Andorra                               |            1 |
+| Netherlands Antilles                  |            1 |
+| Antigua and Barbuda                   |            1 |
+| Burundi                               |            1 |
+| Bahrain                               |            1 |
+| Bahamas                               |            1 |
+| Barbados                              |            1 |
+| Brunei                                |            1 |
+| Bhutan                                |            1 |
+| Central African Republic              |            1 |
+| Cook Islands                          |            1 |
+| Comoros                               |            1 |
+| Cape Verde                            |            1 |
+| Costa Rica                            |            1 |
+| Christmas Island                      |            1 |
+| Cayman Islands                        |            1 |
+| Djibouti                              |            1 |
+| Dominica                              |            1 |
+| Eritrea                               |            1 |
+| Western Sahara                        |            1 |
+| Fiji Islands                          |            1 |
+| Falkland Islands                      |            1 |
+| Faroe Islands                         |            1 |
+| Gabon                                 |            1 |
+| Gibraltar                             |            1 |
+| Guinea                                |            1 |
+| Guinea-Bissau                         |            1 |
+| Equatorial Guinea                     |            1 |
+| Grenada                               |            1 |
+| Greenland                             |            1 |
+| French Guiana                         |            1 |
+| Guyana                                |            1 |
+| Iceland                               |            1 |
+| Saint Kitts and Nevis                 |            1 |
+| Liberia                               |            1 |
+| Saint Lucia                           |            1 |
+| Lesotho                               |            1 |
+| Luxembourg                            |            1 |
+| Macao                                 |            1 |
+| Maldives                              |            1 |
+| Marshall Islands                      |            1 |
+| Macedonia                             |            1 |
+| Mali                                  |            1 |
+| Mongolia                              |            1 |
+| Northern Mariana Islands              |            1 |
+| Montserrat                            |            1 |
+| Martinique                            |            1 |
+| Mayotte                               |            1 |
+| Namibia                               |            1 |
+| New Caledonia                         |            1 |
+| Norfolk Island                        |            1 |
+| Niue                                  |            1 |
+| Pitcairn                              |            1 |
+| Palau                                 |            1 |
+| Papua New Guinea                      |            1 |
+| Qatar                                 |            1 |
+| RÃ©union                              |            1 |
+| Rwanda                                |            1 |
+| Singapore                             |            1 |
+| Saint Helena                          |            1 |
+| Svalbard and Jan Mayen                |            1 |
+| Solomon Islands                       |            1 |
+| Sierra Leone                          |            1 |
+| Saint Pierre and Miquelon             |            1 |
+| Sao Tome and Principe                 |            1 |
+| Suriname                              |            1 |
+| Swaziland                             |            1 |
+| Seychelles                            |            1 |
+| Turks and Caicos Islands              |            1 |
+| Togo                                  |            1 |
+| Tokelau                               |            1 |
+| East Timor                            |            1 |
+| Tonga                                 |            1 |
+| Tuvalu                                |            1 |
+| Uganda                                |            1 |
+| Uruguay                               |            1 |
+| Holy See (Vatican City State)         |            1 |
+| Saint Vincent and the Grenadines      |            1 |
+| Virgin Islands, British               |            1 |
+| Virgin Islands, U.S.                  |            1 |
+| Vanuatu                               |            1 |
+| Wallis and Futuna                     |            1 |
+| Samoa                                 |            1 |
++---------------------------------------+--------------+
+232 rows in set (0.00 sec)
+
+
+###################3
+
+
+mysql> select cities.name, cities.population from cities
+    -> join countries on cities.country_id = countries.id
+    -> where countries.name = 'Mexico'
+    -> and cities.population > 500000
+    -> order by cities.population desc;
++------------------------+------------+
+| name                   | population |
++------------------------+------------+
+| Ciudad de MÃ©xico      |    8591309 |
+| Guadalajara            |    1647720 |
+| Ecatepec de Morelos    |    1620303 |
+| Puebla                 |    1346176 |
+| NezahualcÃ³yotl        |    1224924 |
+| JuÃ¡rez                |    1217818 |
+| Tijuana                |    1212232 |
+| LeÃ³n                  |    1133576 |
+| Monterrey              |    1108499 |
+| Zapopan                |    1002239 |
+| Naucalpan de JuÃ¡rez   |     857511 |
+| Mexicali               |     764902 |
+| CuliacÃ¡n              |     744859 |
+| Acapulco de JuÃ¡rez    |     721011 |
+| Tlalnepantla de Baz    |     720755 |
+| MÃ©rida                |     703324 |
+| Chihuahua              |     670208 |
+| San Luis PotosÃ­       |     669353 |
+| Guadalupe              |     668780 |
+| Toluca                 |     665617 |
+| Aguascalientes         |     643360 |
+| QuerÃ©taro             |     639839 |
+| Morelia                |     619958 |
+| Hermosillo             |     608697 |
+| Saltillo               |     577352 |
+| TorreÃ³n               |     529093 |
+| Centro (Villahermosa)  |     519873 |
++------------------------+------------+
+27 rows in set (0.00 sec)
+
+
+
+################4
+
+mysql> select countries.name, languages.language, languages.percentage from countries
+    -> join languages on countries.id = languages.country_id
+    -> where languages.percentage > 89
+    -> order by percentage desc;
++----------------------------------+----------------+------------+
+| name                             | language       | percentage |
++----------------------------------+----------------+------------+
+| Grenada                          | Creole English |      100.0 |
+| Faroe Islands                    | Faroese        |      100.0 |
+| San Marino                       | Italian        |      100.0 |
+| El Salvador                      | Spanish        |      100.0 |
+| Haiti                            | Haiti Creole   |      100.0 |
+| Rwanda                           | Rwanda         |      100.0 |
+| Western Sahara                   | Arabic         |      100.0 |
+| Bermuda                          | English        |      100.0 |
+| Maldives                         | Dhivehi        |      100.0 |
+| Dominica                         | Creole English |      100.0 |
+| Cape Verde                       | Crioulo        |      100.0 |
+| Saint Kitts and Nevis            | Creole English |      100.0 |
+| Cuba                             | Spanish        |      100.0 |
+| North Korea                      | Korean         |       99.9 |
+| South Korea                      | Korean         |       99.9 |
+| Yemen                            | Arabic         |       99.6 |
+| Bosnia and Herzegovina           | Serbo-Croatian |       99.2 |
+| Saint Vincent and the Grenadines | Creole English |       99.1 |
+| Japan                            | Japanese       |       99.1 |
+| Colombia                         | Spanish        |       99.0 |
+| Portugal                         | Portuguese     |       99.0 |
+| Kiribati                         | Kiribati       |       98.9 |
+| Madagascar                       | Malagasy       |       98.9 |
+| Egypt                            | Arabic         |       98.8 |
+| Hungary                          | Hungarian      |       98.5 |
+| Greece                           | Greek          |       98.5 |
+| Ireland                          | English        |       98.4 |
+| Somalia                          | Somali         |       98.3 |
+| Tonga                            | Tongan         |       98.3 |
+| Burundi                          | Kirundi        |       98.1 |
+| Dominican Republic               | Spanish        |       98.0 |
+| Albania                          | Albaniana      |       97.9 |
+| Jordan                           | Arabic         |       97.9 |
+| Bangladesh                       | Bengali        |       97.7 |
+| Nicaragua                        | Spanish        |       97.6 |
+| Poland                           | Polish         |       97.6 |
+| Brazil                           | Portuguese     |       97.5 |
+| Costa Rica                       | Spanish        |       97.5 |
+| United Kingdom                   | English        |       97.3 |
+| Honduras                         | Spanish        |       97.2 |
+| Venezuela                        | Spanish        |       96.9 |
+| Argentina                        | Spanish        |       96.8 |
+| Marshall Islands                 | Marshallese    |       96.8 |
+| Norway                           | Norwegian      |       96.6 |
+| Martinique                       | Creole French  |       96.6 |
+| Guyana                           | Creole English |       96.4 |
+| Libyan Arab Jamahiriya           | Arabic         |       96.0 |
+| Palestine                        | Arabic         |       95.9 |
+| Croatia                          | Serbo-Croatian |       95.9 |
+| Malta                            | Maltese        |       95.8 |
+| Iceland                          | Icelandic      |       95.7 |
+| Antigua and Barbuda              | Creole English |       95.7 |
+| Uruguay                          | Spanish        |       95.7 |
+| Netherlands                      | Dutch          |       95.6 |
+| Barbados                         | Bajan          |       95.1 |
+| Saudi Arabia                     | Arabic         |       95.0 |
+| Guadeloupe                       | Creole French  |       95.0 |
+| French Guiana                    | Creole French  |       94.3 |
+| Jamaica                          | Creole English |       94.2 |
+| Italy                            | Italian        |       94.1 |
+| France                           | French         |       93.6 |
+| Denmark                          | Danish         |       93.5 |
+| Trinidad and Tobago              | English        |       93.5 |
+| Armenia                          | Armenian       |       93.4 |
+| Lebanon                          | Arabic         |       93.0 |
+| Ecuador                          | Spanish        |       93.0 |
+| Finland                          | Finnish        |       92.7 |
+| Tuvalu                           | Tuvalu         |       92.5 |
+| Mexico                           | Spanish        |       92.1 |
+| China                            | Chinese        |       92.0 |
+| Austria                          | German         |       92.0 |
+| RÃ©union                         | Creole French  |       91.5 |
+| Germany                          | German         |       91.3 |
+| Seychelles                       | Seselwa        |       91.3 |
+| Romania                          | Romanian       |       90.7 |
+| American Samoa                   | Samoan         |       90.6 |
+| Syria                            | Arabic         |       90.0 |
+| Swaziland                        | Swazi          |       89.9 |
+| Chile                            | Spanish        |       89.7 |
+| Bahamas                          | Creole English |       89.7 |
+| Sweden                           | Swedish        |       89.5 |
++----------------------------------+----------------+------------+
+81 rows in set (0.00 sec)
+
+
+
+#############5
+
+
+mysql> select name, population, surface_area from countries
+    -> where surface_area < 501
+    -> and population > 100000;
++----------------------------------+------------+--------------+
+| name                             | population | surface_area |
++----------------------------------+------------+--------------+
+| Aruba                            |     103000 |       193.00 |
+| Barbados                         |     270000 |       430.00 |
+| Macao                            |     473000 |        18.00 |
+| Maldives                         |     286000 |       298.00 |
+| Malta                            |     380200 |       316.00 |
+| Mayotte                          |     149000 |       373.00 |
+| Saint Vincent and the Grenadines |     114000 |       388.00 |
++----------------------------------+------------+--------------+
+
+
+
+################6
+
+mysql>  select name, capital, life_expectancy, government_form from countries where government_form = 'Constitutional Monarchy'
+    -> and capital > 200
+    -> and life_expectancy > 75;
++----------------+---------+-----------------+-------------------------+
+| name           | capital | life_expectancy | government_form         |
++----------------+---------+-----------------+-------------------------+
+| Denmark        |    3315 |            76.5 | Constitutional Monarchy |
+| Spain          |     653 |            78.8 | Constitutional Monarchy |
+| United Kingdom |     456 |            77.7 | Constitutional Monarchy |
+| Jamaica        |    1530 |            75.2 | Constitutional Monarchy |
+| Jordan         |    1786 |            77.4 | Constitutional Monarchy |
+| Japan          |    1532 |            80.7 | Constitutional Monarchy |
+| Liechtenstein  |    2446 |            78.8 | Constitutional Monarchy |
+| Luxembourg     |    2452 |            77.1 | Constitutional Monarchy |
+| Monaco         |    2695 |            78.8 | Constitutional Monarchy |
+| Norway         |    2807 |            78.7 | Constitutional Monarchy |
+| New Zealand    |    3499 |            77.8 | Constitutional Monarchy |
+| Sweden         |    3048 |            79.6 | Constitutional Monarchy |
++----------------+---------+-----------------+-------------------------+
+12 rows in set (0.00 sec)
+
+
+
+####################7
+
+mysql> select countries.name, cities.name, cities.district, cities.population from countries
+    -> join cities on countries.id = cities.country_id
+    -> where cities.population > 500000
+    -> and cities.district LIKE 'Buenos Aires'
+    -> and countries.name LIKE 'Argentina';
++-----------+-----------------+--------------+------------+
+| name      | name            | district     | population |
++-----------+-----------------+--------------+------------+
+| Argentina | La Matanza      | Buenos Aires |    1266461 |
+| Argentina | Lomas de Zamora | Buenos Aires |     622013 |
+| Argentina | Quilmes         | Buenos Aires |     559249 |
+| Argentina | Almirante Brown | Buenos Aires |     538918 |
+| Argentina | La Plata        | Buenos Aires |     521936 |
+| Argentina | Mar del Plata   | Buenos Aires |     512880 |
++-----------+-----------------+--------------+------------+
+6 rows in set (0.00 sec)
+
+
+
+###################8
+
+
+mysql> select region, count(name) as number_countries from countries group by region
+    -> order by number_countries desc;
++---------------------------+------------------+
+| region                    | number_countries |
++---------------------------+------------------+
+| Caribbean                 |               24 |
+| Eastern Africa            |               20 |
+| Middle East               |               18 |
+| Western Africa            |               17 |
+| Southern Europe           |               15 |
+| Southern and Central Asia |               14 |
+| South America             |               14 |
+| Southeast Asia            |               11 |
+| Polynesia                 |               10 |
+| Eastern Europe            |               10 |
+| Central Africa            |                9 |
+| Western Europe            |                9 |
+| Central America           |                8 |
+| Eastern Asia              |                8 |
+| Nordic Countries          |                7 |
+| Northern Africa           |                7 |
+| Micronesia                |                7 |
+| Antarctica                |                5 |
+| Australia and New Zealand |                5 |
+| North America             |                5 |
+| Southern Africa           |                5 |
+| Melanesia                 |                5 |
+| Baltic Countries          |                3 |
+| British Islands           |                2 |
+| Micronesia/Caribbean      |                1 |
++---------------------------+------------------+
+25 rows in set (0.00 sec)
+
