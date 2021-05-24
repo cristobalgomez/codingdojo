@@ -1,0 +1,297 @@
+######SELECT BASICS########
+
+SELECT population FROM world
+  WHERE name = 'Germany'
+
+--------
+
+SELECT name, population FROM world
+  WHERE name IN ('Sweden', 'Norway', 'Denmark');
+-----
+
+SELECT name, area FROM world
+  WHERE area BETWEEN 200000 AND 250000
+
+#######SELECT FROM WORLD
+
+SELECT name FROM world
+  WHERE name LIKE 'y%'
+-------
+
+SELECT name FROM world
+  WHERE name LIKE '%y'
+----
+SELECT name FROM world
+  WHERE name LIKE '%land'
+-----
+SELECT name FROM world
+  WHERE name LIKE 'C%ia'
+-----
+SELECT name FROM world
+  WHERE name LIKE '%oo%'
+----
+
+SELECT name FROM world
+  WHERE name LIKE '%a%a%a%'
+
+-----
+
+SELECT name FROM world
+ WHERE name LIKE '_t%'
+ORDER BY name DESC
+
+-----
+
+SELECT name FROM world
+ WHERE name LIKE '%o__o%'
+
+---------
+
+SELECT name FROM world
+ WHERE name LIKE '____'
+-------
+
+SELECT name
+  FROM world
+ WHERE name LIKE capital
+
+-----
+
+SELECT name
+  FROM world
+ WHERE capital LIKE '% City'
+
+----
+
+SELECT capital, name 
+FROM world
+WHERE capital LIKE concat(name,'%')
+
+------
+
+SELECT capital, name 
+FROM world
+WHERE capital LIKE concat('%',name,'%') AND capital > name
+
+----
+
+SELECT name, REPLACE(capital, name, '') as extension FROM world WHERE capital LIKE concat('%', name, '%') AND capital > name
+
+
+###### select withnn select
+
+SELECT name FROM world
+  WHERE population >
+     (SELECT population FROM world
+      WHERE name='Russia')
+-------------
+
+SELECT name FROM world
+  WHERE gdp/population >
+     (SELECT gdp/population FROM world
+      WHERE name='United Kingdom') and continent='Europe'
+
+
+------------
+
+SELECT name, continent FROM world
+WHERE continent = (SELECT continent FROM world WHERE name = 'Argentina')
+or continent = (SELECT continent FROM world WHERE name = 'Australia')
+
+---------
+
+SELECT name, population FROM world
+  WHERE population >
+     (SELECT population FROM world
+      WHERE name='Canada') and
+population <
+     (SELECT population FROM world
+      WHERE name='Poland')
+
+
+--------
+
+SELECT name, CONCAT(ROUND(100*population/(SELECT population FROM world WHERE name = 'Germany'),0),'%') FROM world 
+WHERE continent = 'Europe'
+
+-------------------
+
+SELECT name FROM world 
+WHERE gdp > (SELECT MAX(gdp) FROM world WHERE continent = 'Europe' and gdp > 0)
+
+
+-----
+
+
+SELECT continent, name, area FROM world x
+  WHERE area >= ALL
+    (SELECT area FROM world y
+        WHERE y.continent=x.continent
+          AND area>0)
+
+--------
+
+SELECT continent, name FROM world x
+WHERE name <= ALL(SELECT y.name FROM world y WHERE y.continent = x.continent )
+
+
+--------
+
+https://stackoverflow.com/questions/28929307/sql-combined-select-statement
+
+SELECT name, continent, population 
+FROM world x 
+WHERE 25000000 > ALL(SELECT population 
+                     FROM world y 
+                     WHERE y.continent = x.continent 
+                     )
+
+---------
+
+SELECT name, continent FROM world x 
+WHERE population/3 >= ALL(SELECT population FROM world y
+        			 WHERE y.continent=x.continent
+ 			 AND x.name != y.name)
+	
+
+
+-######SUM AND COUNT
+
+SELECT SUM(population)
+FROM world
+
+-----
+SELECT continent FROM world GROUP BY continent
+---------
+
+SELECT sum(gdp) FROM world WHERE continent = 'Africa'
+
+-----
+
+SELECT count(name) FROM world WHERE area >= 1000000
+
+-------
+
+SELECT sum(population) FROM world
+WHERE name IN ('Estonia', 'Latvia', 'Lithuania') 
+
+----------
+
+SELECT continent, count(name) FROM world
+GROUP BY continent
+
+-----------
+
+SELECT continent, count(name) FROM world
+WHERE population >= 10000000
+GROUP BY continent
+--------
+
+SELECT continent FROM world
+GROUP BY continent
+HAVING SUM(population) >= 100000000
+
+
+##############join
+
+SELECT matchid, player  FROM goal 
+  WHERE teamid = 'Ger'
+
+------------------
+
+SELECT id,stadium,team1,team2
+  FROM game WHERE id = '1012'
+
+------------
+
+SELECT player,teamid,stadium,mdate
+  FROM game JOIN goal ON (id=matchid) 
+WHERE teamid = 'GER'
+
+------------
+SELECT team1,team2, player
+  FROM game JOIN goal ON (id=matchid) 
+WHERE player LIKE 'Mario%'
+
+--------
+
+SELECT player, teamid, coach, gtime
+  FROM goal JOIN eteam ON id = teamid
+ WHERE gtime<=10
+
+-------
+
+SELECT mdate, teamname FROM game 
+JOIN eteam ON team1 = eteam.id
+WHERE coach = 'Fernando Santos'
+
+--------
+
+
+SELECT player FROM  goal 
+JOIN game ON id = matchid
+WHERE stadium = 'National Stadium, Warsaw'
+
+--------
+
+SELECT player
+FROM game 
+JOIN goal ON matchid = game.id 
+JOIN eteam ON teamid = eteam.id
+WHERE (team1='GER' or team2='GER')
+AND eteam.id != 'GER'
+GROUP BY player
+
+
+SELECT DISTINCT player
+FROM game 
+JOIN goal ON matchid = game.id 
+JOIN eteam ON teamid = eteam.id
+WHERE (team1='GER' or team2='GER')
+AND eteam.id != 'GER'
+
+
+-------
+
+SELECT teamname, COUNT(player)
+  FROM eteam JOIN goal ON id=teamid
+ GROUP BY teamname
+
+-------
+
+
+SELECT stadium, COUNT(player) FROM game
+JOIN goal ON id = matchid
+GROUP BY stadium
+
+--------
+
+SELECT matchid,mdate, count(player)
+FROM game JOIN goal ON matchid = id 
+WHERE (team1 = 'POL' OR team2 = 'POL')
+GROUP BY matchid,mdate
+
+-----
+
+SELECT matchid,mdate,count(player)
+FROM game 
+JOIN goal ON matchid = id 
+JOIN eteam ON eteam.id = teamid
+WHERE (team1 = 'GER' OR team2 = 'GER')
+AND eteam.id = 'GER'
+GROUP BY matchid,mdate
+------
+
+https://stackoverflow.com/questions/23081938/whats-wrong-with-my-query-with-case-statement/23082244
+
+SELECT mdate,
+  team1,
+  SUM(CASE WHEN teamid=team1 THEN 1 ELSE 0 END) as score1,
+  team2,
+  SUM(CASE WHEN teamid=team2 THEN 1 ELSE 0 END) as score2
+  FROM game JOIN goal ON matchid = id
+group by mdate, matchid, team1, team2
+
+
+
+
