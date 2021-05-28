@@ -7,15 +7,12 @@ mysql> select customer.first_name, customer.last_name, customer.email, address.a
     -> join city on city.city_id = address.city_id
     -> where city.city_id = 312;
 
-
-+------------+-----------+-----------------------------------+--------------------+
-| first_name | last_name | email                             | address            |
-+------------+-----------+-----------------------------------+--------------------+
-| MATTIE     | HOFFMAN   | MATTIE.HOFFMAN@sakilacustomer.org | 1497 Yuzhou Drive  |
-| CECIL      | VINES     | CECIL.VINES@sakilacustomer.org    | 548 Uruapan Street |
-+------------+-----------+-----------------------------------+--------------------+
-2 rows in set (0.00 sec)
-
++------------+-----------+-----------------------------------+--------------------+--------+
+| first_name | last_name | email                             | address            | city   |
++------------+-----------+-----------------------------------+--------------------+--------+
+| MATTIE     | HOFFMAN   | MATTIE.HOFFMAN@sakilacustomer.org | 1497 Yuzhou Drive  | London |
+| CECIL      | VINES     | CECIL.VINES@sakilacustomer.org    | 548 Uruapan Street | London |
++------------+-----------+-----------------------------------+--------------------+--------+
 
 ########################2
 
