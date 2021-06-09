@@ -4,9 +4,10 @@ public class GorillaTest {
 
         gorilla.eatBananas();
         gorilla.throwSomething();
-        gorilla.eatBananas();
-        gorilla.climb();
         gorilla.displayEnergy();
+        gorilla.eatBananas();
+        gorilla.displayEnergy();
+        gorilla.climb();
         gorilla.climb();
         gorilla.climb();
         gorilla.climb();
