@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+    <display-name>SimpleServletProject</display-name> #titulo del servlet
+    
+    <servlet>
+        <servlet-name>simpleServlet</servlet-name> #definer nombre del primer servlet
+        <servlet-class>org.codingdojo.tutorial.SimpleServlet</servlet-class> #paquete que se debe cargar cuando se solicita el servlet
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>simpleServlet</servlet-name> #nombre del servlet asociado a la url definida
+        <url-pattern>/simpleServlet</url-pattern> #url con la que se carga "simpleServlet"
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>xmlServlet</servlet-name> #definer nombre del segundo servlet
+        <servlet-class>or.codingdojo.tutorial.XmlServlet</servlet-class> #paquete que se debe cargar cuando se solicita el servlet
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>xmlServlet</servlet-name> #nombre del servlet asociado a la url definida
+        <url-pattern>/xmlServletpath</url-pattern> #url para cargar el servlet xml
+    </servlet-mapping>
+    
+    <welcome-file-list> #index del sitio
+    <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+</web-app>

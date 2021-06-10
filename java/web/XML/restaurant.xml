@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dailyMenu>
+    <item category="breakfast">
+        <name>Tostadas con palta</name>
+        <description>Unas crujientes tostadas con palta y un Cafe o Te</description>
+        <price>$34.99</price>
+    </category>
+    <item category="breakfast">
+        <name>Huevos con queso</name>
+        <description>Ricos huevos de campo con queso y un Cafe o Te</description>
+        <price>$23.99</price>
+    </category>
+        <item category="dinner">
+        <name>Ensalada cesar</name>
+        <description>Fresca y liviana ensalada cesar para la cena</description>
+        <price>$25.99</price>
+    </category>
+</dailyMenu>
