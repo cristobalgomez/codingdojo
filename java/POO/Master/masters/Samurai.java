@@ -2,10 +2,9 @@ package masters;
 
 public class Samurai extends Human {
 
-    static final int TOTAL_HEALTH = 200;
-
     public Samurai() {
-        this.health = TOTAL_HEALTH;
+        this.health = 200;
+        this.TOTAL_HEALTH = 200;
     }
 
     public void deathBlow(Human attackedHuman) {

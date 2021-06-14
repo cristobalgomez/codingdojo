@@ -5,14 +5,15 @@ public class Human {
     protected int intelligence = 3; 
     protected int stealth = 3;
     protected int health = 100;
+    protected int TOTAL_HEALTH = 100;
 
     public void reduceHealth(int damage) {
         if(this.health < damage) this.health = 0;
         else this.health -= damage;
     }
 
-    public void increaseHealth(int heal, int TOTAL_HEALTH) {
-        if(this.health + heal > TOTAL_HEALTH) this.health = TOTAL_HEALTH;
+    public void increaseHealth(int heal) {
+        if(this.health + heal > this.TOTAL_HEALTH) this.health = this.TOTAL_HEALTH;
         else this.health += heal;
     }
 

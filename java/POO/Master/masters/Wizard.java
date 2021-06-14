@@ -2,15 +2,14 @@ package masters;
 
 public class Wizard extends Human {
 
-    static final int TOTAL_HEALTH = 50;
-
     public Wizard() {
-        this.health = TOTAL_HEALTH;
+        this.health = 50;
+        this.TOTAL_HEALTH = 50;
         this.intelligence = 8;
     }
 
     public void heal(Human healedHuman) {
-        healedHuman.increaseHealth(this.intelligence, TOTAL_HEALTH);
+        healedHuman.increaseHealth(this.intelligence);
     }
 
     public void fireBall(Human attackedHuman) {

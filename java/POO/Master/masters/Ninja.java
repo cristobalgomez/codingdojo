@@ -2,15 +2,13 @@ package masters;
 
 public class Ninja extends Human {
 
-    static final int TOTAL_HEALTH = 100;
-
     public Ninja() {
-        this.stealth = TOTAL_HEALTH;
+        this.stealth = 10;
     }
 
     public void steal(Human attackedHuman) {
         attackedHuman.reduceHealth(this.stealth);
-        this.increaseHealth(this.stealth, TOTAL_HEALTH);
+        this.increaseHealth(this.stealth);
     }
 
     public void runAway() {
