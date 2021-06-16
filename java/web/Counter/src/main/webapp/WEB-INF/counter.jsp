@@ -8,7 +8,7 @@
 <title>Counter</title>
 </head>
 <body>
-<form action="./Counter?add=true" method="post">
+<form action="./Counter" method="post">
     <input type="submit" name="add" value="Click Me" />
 </form>
 

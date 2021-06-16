@@ -32,17 +32,8 @@ public class Counter extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		int clicks = 0;
-		String add = request.getParameter("add") != null ? request.getParameter("add") : "false";
-
 		
-		if(!session.isNew()) {
-			if(add.equals("true")) {
-				int getClicks = (int) session.getAttribute("sessionClicks");
-				clicks = ++getClicks;
-			} else {
-				clicks = (int) session.getAttribute("sessionClicks");
-			}
-		}
+		if(!session.isNew()) clicks = (int) session.getAttribute("sessionClicks");
 		
 		session.setAttribute("sessionClicks", clicks);
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/counter.jsp");
@@ -55,7 +46,16 @@ public class Counter extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		
+		if(request.getParameter("add") != null) {
+			int clicks = (int) session.getAttribute("sessionClicks");
+			clicks++;
+			session.setAttribute("sessionClicks", clicks);
+			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/counter.jsp");
+			view.forward(request, response);	
+		}
+
 	}
 
 }
