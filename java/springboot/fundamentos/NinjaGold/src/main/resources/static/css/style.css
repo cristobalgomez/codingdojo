@@ -1,0 +1,16 @@
+@charset "UTF-8";
+form {
+	margin: 5px;
+	display: inline-block;
+}
+p.gana {
+	color: green;
+}
+p.pierde {
+	color: red;
+}
+div.actividad {
+	height: 100px;
+	overflow: scroll;
+	border: 1px solid black;
+}
