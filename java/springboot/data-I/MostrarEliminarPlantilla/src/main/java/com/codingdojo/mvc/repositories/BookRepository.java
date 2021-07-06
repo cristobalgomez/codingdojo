@@ -11,7 +11,6 @@ import com.codingdojo.mvc.models.Book;
 public interface BookRepository extends CrudRepository<Book, Long> {
 	List<Book> findAll();
 	List<Book> findByDescriptionContaining(String search);
-	void deleteById(Long id);
 //	Long countByTitleContaining(String search);
 //	Long deleteByTitleStartingWith(String search);
 }
