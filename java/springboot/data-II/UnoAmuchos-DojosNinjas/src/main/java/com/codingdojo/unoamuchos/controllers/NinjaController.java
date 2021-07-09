@@ -48,7 +48,7 @@ public class NinjaController {
 			return "/ninjas/new.jsp";
 		} else {
 			ninjaServ.createNinja(ninja);
-			return "redirect:/";
+			return "redirect:/dojos";
 			
 		}
 	}

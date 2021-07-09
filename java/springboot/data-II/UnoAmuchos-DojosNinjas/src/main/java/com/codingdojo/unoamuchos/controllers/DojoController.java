@@ -42,7 +42,7 @@ public class DojoController {
 			return "/dojos/new.jsp";
 		} else {
 			dojoServ.createDojo(dojo);
-			return "redirect:/";
+			return "redirect:/dojos";
 		}
 	}
 	

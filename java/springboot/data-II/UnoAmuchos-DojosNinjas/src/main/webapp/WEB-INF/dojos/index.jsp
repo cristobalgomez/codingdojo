@@ -12,14 +12,14 @@
 	    <thead>
 	        <tr>
 	            <th>Nombre</th>
-	            <th>id</th>
+	            <th>numero de ninjas</th>
 	        </tr>
 	    </thead>
 	    <tbody>
 	        <c:forEach items="${dojos}" var="dojo">
 		        <tr>
 		            <td><c:out value="${dojo.name}"/></td>
-		            <td><c:out value="${dojo.id}"/></td>
+		            <td><c:out value="${dojo.ninjas.size()}"/></td>
 		        </tr>
 	        </c:forEach>
 	    </tbody>

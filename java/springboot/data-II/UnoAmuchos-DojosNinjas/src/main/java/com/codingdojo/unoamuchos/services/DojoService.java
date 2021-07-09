@@ -30,5 +30,6 @@ public class DojoService {
 	public Dojo createDojo(Dojo dojo) {
 		return dojoRepo.save(dojo);
 	}
+	
 
 }
